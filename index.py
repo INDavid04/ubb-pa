@@ -1,15 +1,35 @@
+### Strings-2 Find/replace, string formatting
+msg = """Line1
+ Line2
+        Line3"""
+print (msg)
+
+msg = "Welcome to Python 101: Strings"
+print (msg.find('Python'))
+print (msg.replace('Python', 'Java'))
+print ('Python' in msg)
+print ('Java' in msg)
+
+# Challenge: Make the name (TERRY) capitilized!
+name='TERRY'
+color = 'RED'
+msg = '[' + name + '] loves the color ' + color.lower() + '!'
+msg1 = f'[{name.capitalize()}] loves the color {color.lower()}!'
+print(msg)
+print(msg1)
+
 ### Python 101: String Exercise 1
-""" 
-1. From the string "Welcome to Python 101: Strings", extract text and create/print a new string that says:
-    a. "1 Welcome Ring to Tyler"
-    b. Every first letter in a word should be capitalized (title format)
-2. Print the same string backwards... (Hint: Google is your friend)
-"""
-initial_string = "Welcome to Python 101: Strings"
-new_string = initial_string[18] + initial_string[0:7] + " Ring " + initial_string[8:10] + " Tyler"
-print (new_string)
-new_titled_string = new_string.title()
-print(new_titled_string)
+# """ 
+# 1. From the string "Welcome to Python 101: Strings", extract text and create/print a new string that says:
+#     a. "1 Welcome Ring to Tyler"
+#     b. Every first letter in a word should be capitalized (title format)
+# 2. Print the same string backwards... (Hint: Google is your friend)
+# """
+# initial_string = "Welcome to Python 101: Strings"
+# new_string = initial_string[18] + initial_string[0:7] + " Ring " + initial_string[8:10] + " Tyler"
+# print (new_string)
+# new_titled_string = new_string.title()
+# print(new_titled_string)
 
 
 ### Strings - Basics / Slicing
