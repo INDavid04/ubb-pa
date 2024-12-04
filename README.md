@@ -1,2 +1,2 @@
-# learn-python
-The project is from scrimba.com
+# ubb-pa
+The project is from scrimba.com and from ubb fmi computer science university
