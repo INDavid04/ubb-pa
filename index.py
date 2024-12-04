@@ -1,22 +1,35 @@
+### User Input - Exercise
+# We want to convert kilometers to miles, knowing that a mile is 1.609 kilometers
+name = input("What is your name?")
+kilometers = input(f"Hi {name}! What is the distance?")
+# 1 mile ... 1.609 km
+# x mile ... 2 km 
+miles = float(kilometers) / 1.609
+print (f"The distance in miles is: {round(miles, 2)}")
+
+### User Input
+# name = input("My name is: ")
+# print (f'Your name is {name}')
+
 ### Strings-2 Find/replace, string formatting
-msg = """Line1
- Line2
-        Line3"""
-print (msg)
+# msg = """Line1
+#  Line2
+#         Line3"""
+# print (msg)
 
-msg = "Welcome to Python 101: Strings"
-print (msg.find('Python'))
-print (msg.replace('Python', 'Java'))
-print ('Python' in msg)
-print ('Java' in msg)
+# msg = "Welcome to Python 101: Strings"
+# print (msg.find('Python'))
+# print (msg.replace('Python', 'Java'))
+# print ('Python' in msg)
+# print ('Java' in msg)
 
-# Challenge: Make the name (TERRY) capitilized!
-name='TERRY'
-color = 'RED'
-msg = '[' + name + '] loves the color ' + color.lower() + '!'
-msg1 = f'[{name.capitalize()}] loves the color {color.lower()}!'
-print(msg)
-print(msg1)
+# # Challenge: Make the name (TERRY) capitilized!
+# name='TERRY'
+# color = 'RED'
+# msg = '[' + name + '] loves the color ' + color.lower() + '!'
+# msg1 = f'[{name.capitalize()}] loves the color {color.lower()}!'
+# print(msg)
+# print(msg1)
 
 ### Python 101: String Exercise 1
 # """ 
