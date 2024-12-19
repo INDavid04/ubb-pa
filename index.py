@@ -1,31 +1,48 @@
-## Sets - Exercise
-Eric_and_John = {'Eric','John'}
-friends = {'John','Michael','Terry','Eric','Graham'}
-my_friends = {'Reg','Loretta','Colin','John','Graham'}
-cars =['900','420','V70','911','996','V90','911','911','S','328','900']
-# 1. Check if ‘Eric’ and ‘John’ exist in friends
-print (friends.intersection(Eric_and_John))         # ME
-print('Eric' in friends and 'John' in friends)      # HIM
-# 2. Combine or add the two sets 
-print (friends.union(my_friends))                   # ME
-# print (friends.union | my_friends)                  # HIM
-# 3. Find names that are in both sets
-print (friends.intersection(my_friends))            # ME
-# print (friends.union & my_friends)                  # HIM
-# 4. Find names that are only in friends
-print (friends.difference(my_friends))              # ME
-# print (friends.union - my_friends)                  # HIM
-# 5. Show only the names who only appear in one of the lists
-all_friends = friends.union(my_friends)             # ME
-same_friends = friends.intersection(my_friends)     
-print (all_friends.difference(same_friends))        
-print(my_friends.symmetric_difference(friends))     # HIM
-print(my_friends ^ friends)
-# 6. Create a new cars-list without duplicates
-cars_set = set(cars)                                # ME
-cars_no_duplicates = cars_set
-cars_no_dupl =list(set(cars))                       # HIM
-print (cars_set)
+## Functions - Exercise
+# 2. extend the function with another  input parameter 'color', that defaults to 'red'
+def greeting(name, age=28, color="red"):
+    #Greets user with 'name' from 'input box' and 'age', if available, default age is used
+    # 5. Capitalize first letter of the 'name', and rest are small caps 
+    print('Hello '  +  name.capitalize() + ', you are ' + str(age) +'!')
+    # 4. Change the 'You are xx!' text to say 'you will be xx+1 years old next birthday adding 1 to the age
+    print(f'Hello again {name}, you will be {age + 1} next birthday!')
+    # 1. Add new print statement - on a new line which says 'We hear you like the color xxx! xxx is a string with color
+    # 6. Favorite color should be in lowercase 
+    print (f'We hear you like the color {color.lower()}!')
+name = input('Enter your name: ')
+age = input('Enter your age: ')
+# 3. Capture the color via an input box as variable:color 
+color = input('Enter your color: ')
+greeting(name, int(age), color)
+
+# ## Sets - Exercise
+# Eric_and_John = {'Eric','John'}
+# friends = {'John','Michael','Terry','Eric','Graham'}
+# my_friends = {'Reg','Loretta','Colin','John','Graham'}
+# cars =['900','420','V70','911','996','V90','911','911','S','328','900']
+# # 1. Check if ‘Eric’ and ‘John’ exist in friends
+# print (friends.intersection(Eric_and_John))         # ME
+# print('Eric' in friends and 'John' in friends)      # HIM
+# # 2. Combine or add the two sets 
+# print (friends.union(my_friends))                   # ME
+# # print (friends.union | my_friends)                  # HIM
+# # 3. Find names that are in both sets
+# print (friends.intersection(my_friends))            # ME
+# # print (friends.union & my_friends)                  # HIM
+# # 4. Find names that are only in friends
+# print (friends.difference(my_friends))              # ME
+# # print (friends.union - my_friends)                  # HIM
+# # 5. Show only the names who only appear in one of the lists
+# all_friends = friends.union(my_friends)             # ME
+# same_friends = friends.intersection(my_friends)     
+# print (all_friends.difference(same_friends))        
+# print(my_friends.symmetric_difference(friends))     # HIM
+# print(my_friends ^ friends)
+# # 6. Create a new cars-list without duplicates
+# cars_set = set(cars)                                # ME
+# cars_no_duplicates = cars_set
+# cars_no_dupl =list(set(cars))                       # HIM
+# print (cars_set)
 
 # ## Split and Join - Exercise
 # From the list above fill a list(friends_list) properly
@@ -44,7 +61,6 @@ print (cars_set)
 # friends_list = (','.join(','.join(csv.split(';')).split(':'))).split(',')
 # print(friends_list)
 # print('replace', csv.replace(';',',').replace(':',',').split(','))
-# ##
 
 # ## Split and Join
 # msg ='Welcome to Python 101: Split and Join'
@@ -60,7 +76,6 @@ print (cars_set)
 # print(''.join(msg.split())) # WelcometoPython101:SplitandJoin
 # print(msg.replace(' ', '')) # WelcometoPython101:SplitandJoin
 # print(msg.replace(' ', '<>')) # Welcome<>to<>Python<>101:<>Split<>and<>Join
-# ##
 
 # ## Lists Theory
 # friends = ['John','Michael','Terry','Eric','Graham']
@@ -85,7 +100,6 @@ print (cars_set)
 # new_friends = friends[:] # copiaza lista friends in new_friends
 # new_friends = friends.copy() # la fel ca linia de dinainte
 # new_friends = list(friends) # la fel ca primele doua linii de mai sus
-# ##
 
 # ## Lists - Exercise: Selling Lemonade
 # You sale lemonade over two weeks, the lists show number of sold per week
@@ -107,7 +121,6 @@ print (cars_set)
 # print(f"You've earned {max(sales) * 1.5}$ in your best day!")
 # print(f"You've earned {min(sales) * 1.5}$ in your worst day!")
 # print(f"You've earned {max(sales) * 1.5 + min(sales) * 1.5}$ both in your best and worst day!")
-# ##
 
 # ## User Input - Exercise
 # We want to convert kilometers to miles, knowing that a mile is 1.609 kilometers
@@ -121,7 +134,6 @@ print (cars_set)
 # ## User Input
 # name = input("My name is: ")
 # print (f'Your name is {name}')
-# ##
 
 # ## Strings-2 Find/replace, string formatting
 # msg = """Line1
@@ -134,7 +146,6 @@ print (cars_set)
 # print (msg.replace('Python', 'Java'))
 # print ('Python' in msg)
 # print ('Java' in msg)
-# ##
 
 # ## Challenge: Make the name (TERRY) capitilized!
 # name='TERRY'
@@ -143,7 +154,6 @@ print (cars_set)
 # msg1 = f'[{name.capitalize()}] loves the color {color.lower()}!'
 # print(msg)
 # print(msg1)
-# ##
 
 # ## Python 101: String Exercise 1 
 # 1. From the string "Welcome to Python 101: Strings", extract text and create/print a new string that says:
@@ -156,7 +166,6 @@ print (cars_set)
 # print (new_string)
 # new_titled_string = new_string.title()
 # print(new_titled_string)
-# ##
 
 # ## Strings - Basics / Slicing
 # msg='welcome to it\'s Python 101: Strings' # \ is the escaping character which means the nex character should't be interpreted as a special character, so the ' character should't close the string
@@ -187,7 +196,6 @@ print (cars_set)
 # print (msg[:7]) # from the beggining to the 7th position exclusive, welcome (0-6) 
 # print (msg[-7:]) # from the last 7th position to the end, Strings (28-34)
 # print (msg[-7:-4]) # from the last 7th inclusive position to the last 4th exclusive postion, Str (28-30)
-# ##
 
 # ## Arithmetic operations
 # a, b = 8, 2
@@ -199,7 +207,6 @@ print (cars_set)
 # print ("Division (floor): ", a // b)
 # print ("Modulus: ", a % b)
 # print ("Exponent: ", a ** b)
-# ##
 
 # ## Variables and datatypes
 # print('Variables & Datatypes - Exercise')
@@ -210,8 +217,6 @@ print (cars_set)
 # price=14.99
 # in_stock=5
 # print(name + ' has ' + str(in_stock) + ' things of ' + str(price) + ' euro!')
-# ##
 
 # ## Here is my first line of Python
 # print("Hello World! It is easier to run two commands in index.html instead of downloading python so yeah, power web console")
-# ##
