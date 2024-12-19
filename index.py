@@ -1,11 +1,33 @@
+### Lists - Exercise: Selling Lemonade
+# You sale lemonade over two weeks, the lists show number of sold per week
+# Profit for each lemonade sold is 1.5$
+# Add another day to week 2 list by capturing a number as input
+# Combine the two lists into the list caled 'sales'
+# Calculate/print how much you have earned on
+# Best day
+# Worst day
+# Separately and in total (Hint: 3 prints in total)
+###
+sales_w1 = [7,3,42,19,15,35,9]
+sales_w2 = [12,4,26,10,7,28]
+sales = []
+new_day = int(input("How many lemonade have you sold last Sunday?"))
+sales_w2.append(new_day)
+sales.extend(sales_w1)
+sales.extend(sales_w2)
+print(f"You've earned {max(sales) * 1.5}$ in your best day!")
+print(f"You've earned {min(sales) * 1.5}$ in your worst day!")
+print(f"You've earned {max(sales) * 1.5 + min(sales) * 1.5}$ both in your best and worst day!")
+
 ### User Input - Exercise
 # We want to convert kilometers to miles, knowing that a mile is 1.609 kilometers
-name = input("What is your name?")
-kilometers = input(f"Hi {name}! What is the distance?")
+# name = input("What is your name?")
+# kilometers = input(f"Hi {name}! What is the distance?")
 # 1 mile ... 1.609 km
 # x mile ... 2 km 
-miles = float(kilometers) / 1.609
-print (f"The distance in miles is: {round(miles, 2)}")
+###
+# miles = float(kilometers) / 1.609
+# print (f"The distance in miles is: {round(miles, 2)}")
 
 ### User Input
 # name = input("My name is: ")
@@ -31,13 +53,12 @@ print (f"The distance in miles is: {round(miles, 2)}")
 # print(msg)
 # print(msg1)
 
-### Python 101: String Exercise 1
-# """ 
+### Python 101: String Exercise 1 
 # 1. From the string "Welcome to Python 101: Strings", extract text and create/print a new string that says:
 #     a. "1 Welcome Ring to Tyler"
 #     b. Every first letter in a word should be capitalized (title format)
 # 2. Print the same string backwards... (Hint: Google is your friend)
-# """
+###
 # initial_string = "Welcome to Python 101: Strings"
 # new_string = initial_string[18] + initial_string[0:7] + " Ring " + initial_string[8:10] + " Tyler"
 # print (new_string)
@@ -88,8 +109,9 @@ print (f"The distance in miles is: {round(miles, 2)}")
 
 ### Variables and datatypes
 # print('Variables & Datatypes - Exercise')
-# #Create appropriate Variables for Item name, the price 
-# #and how many you have in stock
+# Create appropriate Variables for Item name, the price 
+# and how many you have in stock
+###
 # name="John"
 # price=14.99
 # in_stock=5
