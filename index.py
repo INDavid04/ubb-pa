@@ -1,23 +1,52 @@
-### Split and Join - Exercise
+## Sets - Exercise
+Eric_and_John = {'Eric','John'}
+friends = {'John','Michael','Terry','Eric','Graham'}
+my_friends = {'Reg','Loretta','Colin','John','Graham'}
+cars =['900','420','V70','911','996','V90','911','911','S','328','900']
+# 1. Check if ‘Eric’ and ‘John’ exist in friends
+print (friends.intersection(Eric_and_John))         # ME
+print('Eric' in friends and 'John' in friends)      # HIM
+# 2. Combine or add the two sets 
+print (friends.union(my_friends))                   # ME
+# print (friends.union | my_friends)                  # HIM
+# 3. Find names that are in both sets
+print (friends.intersection(my_friends))            # ME
+# print (friends.union & my_friends)                  # HIM
+# 4. Find names that are only in friends
+print (friends.difference(my_friends))              # ME
+# print (friends.union - my_friends)                  # HIM
+# 5. Show only the names who only appear in one of the lists
+all_friends = friends.union(my_friends)             # ME
+same_friends = friends.intersection(my_friends)     
+print (all_friends.difference(same_friends))        
+print(my_friends.symmetric_difference(friends))     # HIM
+print(my_friends ^ friends)
+# 6. Create a new cars-list without duplicates
+cars_set = set(cars)                                # ME
+cars_no_duplicates = cars_set
+cars_no_dupl =list(set(cars))                       # HIM
+print (cars_set)
+
+# ## Split and Join - Exercise
 # From the list above fill a list(friends_list) properly
 # with the names of all the friends. One per "slot"
 # you may need to run same command several times
 # use print() statements to work your way through the exercise
-###
-# My version
-csv = 'Eric,John,Michael,Terry,Graham:TerryG;Brian'
-friends_list = ['Exercise: fill me with names']
-friends_list.clear()
-csv = csv.replace(':', ',')
-csv = csv.replace(';', ',')
-friends_list = csv.split(',')
-print(friends_list)
-# His Version:
-friends_list = (','.join(','.join(csv.split(';')).split(':'))).split(',')
-print(friends_list)
-print('replace', csv.replace(';',',').replace(':',',').split(','))
+# ## My version
+# csv = 'Eric,John,Michael,Terry,Graham:TerryG;Brian'
+# friends_list = ['Exercise: fill me with names']
+# friends_list.clear()
+# csv = csv.replace(':', ',')
+# csv = csv.replace(';', ',')
+# friends_list = csv.split(',')
+# print(friends_list)
+# ## His Version:
+# friends_list = (','.join(','.join(csv.split(';')).split(':'))).split(',')
+# print(friends_list)
+# print('replace', csv.replace(';',',').replace(':',',').split(','))
+# ##
 
-### Split and Join
+# ## Split and Join
 # msg ='Welcome to Python 101: Split and Join'
 # csv = 'Eric,John,Michael,Terry,Graham'
 # friends_list = ['Eric','John','Michael','Terry','Graham']
@@ -31,9 +60,9 @@ print('replace', csv.replace(';',',').replace(':',',').split(','))
 # print(''.join(msg.split())) # WelcometoPython101:SplitandJoin
 # print(msg.replace(' ', '')) # WelcometoPython101:SplitandJoin
 # print(msg.replace(' ', '<>')) # Welcome<>to<>Python<>101:<>Split<>and<>Join
-###
+# ##
 
-### Lists Theory
+# ## Lists Theory
 # friends = ['John','Michael','Terry','Eric','Graham']
 # cars = [911,130,328,535,740,308]
 # friends.sort() # sorteaza lista
@@ -56,9 +85,9 @@ print('replace', csv.replace(';',',').replace(':',',').split(','))
 # new_friends = friends[:] # copiaza lista friends in new_friends
 # new_friends = friends.copy() # la fel ca linia de dinainte
 # new_friends = list(friends) # la fel ca primele doua linii de mai sus
-###
+# ##
 
-### Lists - Exercise: Selling Lemonade
+# ## Lists - Exercise: Selling Lemonade
 # You sale lemonade over two weeks, the lists show number of sold per week
 # Profit for each lemonade sold is 1.5$
 # Add another day to week 2 list by capturing a number as input
@@ -67,7 +96,7 @@ print('replace', csv.replace(';',',').replace(':',',').split(','))
 # Best day
 # Worst day
 # Separately and in total (Hint: 3 prints in total)
-###
+# ##
 # sales_w1 = [7,3,42,19,15,35,9]
 # sales_w2 = [12,4,26,10,7,28]
 # sales = []
@@ -78,55 +107,58 @@ print('replace', csv.replace(';',',').replace(':',',').split(','))
 # print(f"You've earned {max(sales) * 1.5}$ in your best day!")
 # print(f"You've earned {min(sales) * 1.5}$ in your worst day!")
 # print(f"You've earned {max(sales) * 1.5 + min(sales) * 1.5}$ both in your best and worst day!")
+# ##
 
-### User Input - Exercise
+# ## User Input - Exercise
 # We want to convert kilometers to miles, knowing that a mile is 1.609 kilometers
 # name = input("What is your name?")
 # kilometers = input(f"Hi {name}! What is the distance?")
 # 1 mile ... 1.609 km
 # x mile ... 2 km 
-###
+# ##
 # miles = float(kilometers) / 1.609
 # print (f"The distance in miles is: {round(miles, 2)}")
-
-### User Input
+# ## User Input
 # name = input("My name is: ")
 # print (f'Your name is {name}')
+# ##
 
-### Strings-2 Find/replace, string formatting
+# ## Strings-2 Find/replace, string formatting
 # msg = """Line1
 #  Line2
 #         Line3"""
 # print (msg)
-
+# ##
 # msg = "Welcome to Python 101: Strings"
 # print (msg.find('Python'))
 # print (msg.replace('Python', 'Java'))
 # print ('Python' in msg)
 # print ('Java' in msg)
+# ##
 
-# # Challenge: Make the name (TERRY) capitilized!
+# ## Challenge: Make the name (TERRY) capitilized!
 # name='TERRY'
 # color = 'RED'
 # msg = '[' + name + '] loves the color ' + color.lower() + '!'
 # msg1 = f'[{name.capitalize()}] loves the color {color.lower()}!'
 # print(msg)
 # print(msg1)
+# ##
 
-### Python 101: String Exercise 1 
+# ## Python 101: String Exercise 1 
 # 1. From the string "Welcome to Python 101: Strings", extract text and create/print a new string that says:
 #     a. "1 Welcome Ring to Tyler"
 #     b. Every first letter in a word should be capitalized (title format)
 # 2. Print the same string backwards... (Hint: Google is your friend)
-###
+# ##
 # initial_string = "Welcome to Python 101: Strings"
 # new_string = initial_string[18] + initial_string[0:7] + " Ring " + initial_string[8:10] + " Tyler"
 # print (new_string)
 # new_titled_string = new_string.title()
 # print(new_titled_string)
+# ##
 
-
-### Strings - Basics / Slicing
+# ## Strings - Basics / Slicing
 # msg='welcome to it\'s Python 101: Strings' # \ is the escaping character which means the nex character should't be interpreted as a special character, so the ' character should't close the string
 # print ("### Strings Basics")
 # print (msg) # normal print
@@ -155,8 +187,9 @@ print('replace', csv.replace(';',',').replace(':',',').split(','))
 # print (msg[:7]) # from the beggining to the 7th position exclusive, welcome (0-6) 
 # print (msg[-7:]) # from the last 7th position to the end, Strings (28-34)
 # print (msg[-7:-4]) # from the last 7th inclusive position to the last 4th exclusive postion, Str (28-30)
+# ##
 
-### Arithmetic operations
+# ## Arithmetic operations
 # a, b = 8, 2
 # print ("For " + str(a) + " and " + str(b))
 # print ("Addition: ", a + b)
@@ -166,16 +199,19 @@ print('replace', csv.replace(';',',').replace(':',',').split(','))
 # print ("Division (floor): ", a // b)
 # print ("Modulus: ", a % b)
 # print ("Exponent: ", a ** b)
+# ##
 
-### Variables and datatypes
+# ## Variables and datatypes
 # print('Variables & Datatypes - Exercise')
 # Create appropriate Variables for Item name, the price 
 # and how many you have in stock
-###
+# ##
 # name="John"
 # price=14.99
 # in_stock=5
 # print(name + ' has ' + str(in_stock) + ' things of ' + str(price) + ' euro!')
+# ##
 
-### Here is my first line of Python
+# ## Here is my first line of Python
 # print("Hello World! It is easier to run two commands in index.html instead of downloading python so yeah, power web console")
+# ##
