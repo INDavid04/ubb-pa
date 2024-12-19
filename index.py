@@ -1,3 +1,44 @@
+### Split and Join
+msg ='Welcome to Python 101: Split and Join'
+csv = 'Eric,John,Michael,Terry,Graham'
+friends_list = ['Eric','John','Michael','Terry','Graham']
+print(list(msg)) # transforma msg intr-o lista, afisand: ['W', 'e', 'l', 'c', 'o', 'm', 'e', ' ', 't', 'o', ...
+print(msg.split()) # ['Welcome', 'to', 'Python', '101:', 'Split', 'and', 'Join']
+print(msg.split(' ')) # la fel ca mai sus, insa, daca adaugam mai multe spatii, afiseaza si spatiile: '', '', ...
+print(csv.split(',')) # ['Eric', 'John', 'Michael', 'Terry', 'Graham']
+print(str(friends_list)) # ['Eric', 'John', 'Michael', 'Terry', 'Graham']
+print('-'.join(friends_list)) # Eric-John-Michael-Terry-Graham
+print('-'.join(friends_list + friends_list)) # Eric-John-Michael-Terry-Graham-Eric-John-Michael-Terry-Graham
+print(''.join(msg.split())) # WelcometoPython101:SplitandJoin
+print(msg.replace(' ', '')) # WelcometoPython101:SplitandJoin
+print(msg.replace(' ', '<>')) # Welcome<>to<>Python<>101:<>Split<>and<>Join
+###
+
+### Lists Theory
+friends = ['John','Michael','Terry','Eric','Graham']
+cars = [911,130,328,535,740,308]
+friends.sort() # sorteaza lista
+friends.sort(reverse=True) # sorteaza lista descrescator
+friends.reverse() # inverseaza lista
+print(min(cars)) # 130
+print(max(cars)) # 911
+print(sum(cars)) # 2952
+print(min(friends)) # Eric
+print(max(friends)) # Terry
+friends.append("TerryG") # adauga TerryG la finalul listei
+friends.insert(0, "TerryH") # adauga TerryH pe prima pozitie
+friends[2] = "TerryN" # modifica Terry cu TerryN
+friends.extend(cars) # adauga lista cars la finalul listei friends
+friends.remove('Terry') # scoate Terry din lista
+friends.pop(-2) # scoate penultimul element din lista, -1 pentru ultimul, 0 pentru primul, nimic sau -1 pentru ultimul
+friends.clear() # goleste lista, insa NU o sterge, afisam o lista goala
+del friends # sterge lista, daca incercam sa o afisam, primim eroare
+del friends[2] # sterge al treilea element din lista
+new_friends = friends[:] # copiaza lista friends in new_friends
+new_friends = friends.copy() # la fel ca linia de dinainte
+new_friends = list(friends) # la fel ca primele doua linii de mai sus
+###
+
 ### Lists - Exercise: Selling Lemonade
 # You sale lemonade over two weeks, the lists show number of sold per week
 # Profit for each lemonade sold is 1.5$
@@ -8,16 +49,16 @@
 # Worst day
 # Separately and in total (Hint: 3 prints in total)
 ###
-sales_w1 = [7,3,42,19,15,35,9]
-sales_w2 = [12,4,26,10,7,28]
-sales = []
-new_day = int(input("How many lemonade have you sold last Sunday?"))
-sales_w2.append(new_day)
-sales.extend(sales_w1)
-sales.extend(sales_w2)
-print(f"You've earned {max(sales) * 1.5}$ in your best day!")
-print(f"You've earned {min(sales) * 1.5}$ in your worst day!")
-print(f"You've earned {max(sales) * 1.5 + min(sales) * 1.5}$ both in your best and worst day!")
+# sales_w1 = [7,3,42,19,15,35,9]
+# sales_w2 = [12,4,26,10,7,28]
+# sales = []
+# new_day = int(input("How many lemonade have you sold last Sunday?"))
+# sales_w2.append(new_day)
+# sales.extend(sales_w1)
+# sales.extend(sales_w2)
+# print(f"You've earned {max(sales) * 1.5}$ in your best day!")
+# print(f"You've earned {min(sales) * 1.5}$ in your worst day!")
+# print(f"You've earned {max(sales) * 1.5 + min(sales) * 1.5}$ both in your best and worst day!")
 
 ### User Input - Exercise
 # We want to convert kilometers to miles, knowing that a mile is 1.609 kilometers
