@@ -1,4 +1,4 @@
-# Seminar 6
+# Seminar 6 - 12 Decembrie 2024
 # 1)
 
 # a) 
