@@ -1,31 +1,43 @@
-# If/Elif /Else - Exercise
-# Create a calculator which handles +,-,*,/ and outputs answer based on the mode/ operator used
-# Hint: use 3 separate inputs 
-# Bonus: Extend functionality with extra mode so it also does celsius to fahrenheit conversion
-# formula is: temp in C*9/5 + 32 = temp in f
-operation = str(input("Type: \n c for conversion from celsius to fahrenheit \n + for add \n - for substraction \n * for multiplication \n / for division \n Your input: "))
-if (operation == "c"):
-    temperature = float(input("Enter the temperature in celsius: "))
-    temperature = temperature * 9 / 5 + 32
-    print(f"Temperature in fahrenheit is {temperature}")
-elif (operation == "+"):
-    a = float(input("Enter first number: "))
-    b = float(input("Enter second number: "))
-    print(f"The sum is {a + b}")
-elif (operation == "-"):
-    a = float(input("Enter first number: "))
-    b = float(input("Enter second number: "))
-    print(f"The difference is {a - b}")
-elif (operation == "*"):
-    a = float(input("Enter first number: "))
-    b = float(input("Enter second number: "))
-    print(f"The product is {a * b}")
-elif (operation == "/"):
-    a = float(input("Enter first number: "))
-    b = float(input("Enter second number: "))
-    print(f"The division is {a / b}")
-else:
-    print("Sorry! I do not recognize any operation! Please try again with: c, +, -, * or /")
+# Conditionals - Exercise improve
+def num_days(month):
+    # optimize/shorten the code in the function
+    # try to reduce the number of conditionals 
+    if month == 'feb':
+        print('number of days in',month,'is',28)
+    elif month == 'apr' or month == 'jun' or month == 'sep' or month == 'nov':
+        print('number of days in',month,'is',30)
+    else:
+        print('number of days in',month,'is',31)
+num_days('oct')
+
+# # If/Elif /Else - Exercise
+# # Create a calculator which handles +,-,*,/ and outputs answer based on the mode/ operator used
+# # Hint: use 3 separate inputs 
+# # Bonus: Extend functionality with extra mode so it also does celsius to fahrenheit conversion
+# # formula is: temp in C*9/5 + 32 = temp in f
+# operation = str(input("Type: \n c for conversion from celsius to fahrenheit \n + for add \n - for substraction \n * for multiplication \n / for division \n Your input: "))
+# if (operation == "c"):
+#     temperature = float(input("Enter the temperature in celsius: "))
+#     temperature = temperature * 9 / 5 + 32
+#     print(f"Temperature in fahrenheit is {temperature}")
+# elif (operation == "+"):
+#     a = float(input("Enter first number: "))
+#     b = float(input("Enter second number: "))
+#     print(f"The sum is {a + b}")
+# elif (operation == "-"):
+#     a = float(input("Enter first number: "))
+#     b = float(input("Enter second number: "))
+#     print(f"The difference is {a - b}")
+# elif (operation == "*"):
+#     a = float(input("Enter first number: "))
+#     b = float(input("Enter second number: "))
+#     print(f"The product is {a * b}")
+# elif (operation == "/"):
+#     a = float(input("Enter first number: "))
+#     b = float(input("Enter second number: "))
+#     print(f"The division is {a / b}")
+# else:
+#     print("Sorry! I do not recognize any operation! Please try again with: c, +, -, * or /")
 
 # # Functions - Exercise
 # # 2. extend the function with another  input parameter 'color', that defaults to 'red'
