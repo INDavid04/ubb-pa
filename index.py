@@ -1,33 +1,48 @@
-# While Loops - Exercise
-# Guess the correct number in 3 guesses. If you don’t get it right after 3 guesses you lose the game. 
-# Give user input box: 1. To capture guesses, 
-# print(and input boxes) 1. If user wins 2. If user loses
-# Tip:( remember you won’t see  print statements durng execution, so If you want to see prints during whle loop, then print to the input box
-#Modification 1: number 1-100, tell user if guess is too high/low ,and let them have 5-10 guesses.
-# Tip:( remember you won’t see  print statements during execution, so If you want to see prints during whle loop, print to the input box (This is specific to this platform)
-# Three Loop Questions:
-#1. What do I want to repeat?
-#  -> input
-#2. What do I want to change each time?
-#  -> number
-#3. How long should we repeat?
-#  -> 3 times
-guess_number = 10
-i, trials = 0, 5
-guessed = False
-message = "Guess the number between 1 and 100! "
-while i < trials:
-    i += 1
-    number = int(input(message))
-    if number == guess_number:
-        i, guessed = trials, True
-        print("Hurray! You guessed the number!")
-    elif guess_number < number:
-        message = f"The number is less than {number}! Another number: "
-    else:
-        message = f"The number is greater than {number}! Another number: "
-if not guessed:
-    print(f"Sorry! The number was {guess_number}")
+# For Loops - Exercise
+# You are having a party and want to invite your friends. You want the print out invitations for each friend using for loops. The names are in two lists, names and names1. You also need to add two extra names to the list using an input box when you run the code. Printout one invitation to each friend per line. Names should be properly capitalized.
+# Example of printout: 
+# John Cleese! You are invited to the party on saturday.
+# Eric Idle! You are invited to the party on saturday.
+# Hint: You may need two for loops to solve this exercise.
+names = ["Ana", "Ioan", "Vlad"]
+names1 = ["George", "Mihai"]
+names.extend(names1)
+for i in range(2): 
+    name_added = input("Add another name: ")
+    names.append(name_added)
+for name in names:
+    print(f"{name.capitalize()}! You are invited to the party on saturday.")
+
+# # While Loops - Exercise
+# # Guess the correct number in 3 guesses. If you don’t get it right after 3 guesses you lose the game. 
+# # Give user input box: 1. To capture guesses, 
+# # print(and input boxes) 1. If user wins 2. If user loses
+# # Tip:( remember you won’t see  print statements durng execution, so If you want to see prints during whle loop, then print to the input box
+# #Modification 1: number 1-100, tell user if guess is too high/low ,and let them have 5-10 guesses.
+# # Tip:( remember you won’t see  print statements during execution, so If you want to see prints during whle loop, print to the input box (This is specific to this platform)
+# # Three Loop Questions:
+# #1. What do I want to repeat?
+# #  -> input
+# #2. What do I want to change each time?
+# #  -> number
+# #3. How long should we repeat?
+# #  -> 3 times
+# guess_number = 10
+# i, trials = 0, 5
+# guessed = False
+# message = "Guess the number between 1 and 100! "
+# while i < trials:
+#     i += 1
+#     number = int(input(message))
+#     if number == guess_number:
+#         i, guessed = trials, True
+#         print("Hurray! You guessed the number!")
+#     elif guess_number < number:
+#         message = f"The number is less than {number}! Another number: "
+#     else:
+#         message = f"The number is greater than {number}! Another number: "
+# if not guessed:
+#     print(f"Sorry! The number was {guess_number}")
 
 # # Conditionals - Exercise improve
 # def num_days(month):
