@@ -1,14 +1,40 @@
-# Conditionals - Exercise improve
-def num_days(month):
-    # optimize/shorten the code in the function
-    # try to reduce the number of conditionals 
-    if month == 'feb':
-        print('number of days in',month,'is',28)
-    elif month == 'apr' or month == 'jun' or month == 'sep' or month == 'nov':
-        print('number of days in',month,'is',30)
-    else:
-        print('number of days in',month,'is',31)
-num_days('oct')
+# While Loops - Exercise
+# Guess the correct number in 3 guesses. If you don’t get it right after 3 guesses you lose the game. 
+# Give user input box: 1. To capture guesses, 
+# print(and input boxes) 1. If user wins 2. If user loses
+# Tip:( remember you won’t see  print statements durng execution, so If you want to see prints during whle loop, then print to the input box
+#Modification 1: number 1-100, tell user if guess is too high/low ,and let them have 5-10 guesses.
+# Tip:( remember you won’t see  print statements during execution, so If you want to see prints during whle loop, print to the input box (This is specific to this platform)
+# Three Loop Questions:
+#1. What do I want to repeat?
+#  -> input
+#2. What do I want to change each time?
+#  -> number
+#3. How long should we repeat?
+#  -> 3 times
+guess_number = 10
+i, trials = 0, 3
+guessed = False
+while i < trials:
+    i += 1
+    number = int(input(f"Guess the number (You have {trials - i + 1}) trials: "))
+    if number == guess_number:
+        i, guessed = trials, True
+        print("Hurray! You guessed the number!")
+if not guessed:
+    print (f"Sorry! The number was {guess_number}")
+
+# # Conditionals - Exercise improve
+# def num_days(month):
+#     # optimize/shorten the code in the function
+#     # try to reduce the number of conditionals 
+#     if month == 'feb':
+#         print('number of days in',month,'is',28)
+#     elif month == 'apr' or month == 'jun' or month == 'sep' or month == 'nov':
+#         print('number of days in',month,'is',30)
+#     else:
+#         print('number of days in',month,'is',31)
+# num_days('oct')
 
 # # If/Elif /Else - Exercise
 # # Create a calculator which handles +,-,*,/ and outputs answer based on the mode/ operator used
