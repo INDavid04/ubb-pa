@@ -13,16 +13,21 @@
 #3. How long should we repeat?
 #  -> 3 times
 guess_number = 10
-i, trials = 0, 3
+i, trials = 0, 5
 guessed = False
+message = "Guess the number between 1 and 100! "
 while i < trials:
     i += 1
-    number = int(input(f"Guess the number (You have {trials - i + 1}) trials: "))
+    number = int(input(message))
     if number == guess_number:
         i, guessed = trials, True
         print("Hurray! You guessed the number!")
+    elif guess_number < number:
+        message = f"The number is less than {number}! Another number: "
+    else:
+        message = f"The number is greater than {number}! Another number: "
 if not guessed:
-    print (f"Sorry! The number was {guess_number}")
+    print(f"Sorry! The number was {guess_number}")
 
 # # Conditionals - Exercise improve
 # def num_days(month):
