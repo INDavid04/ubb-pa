@@ -1,34 +1,36 @@
-# Lambda Functions - Exercise
-# f(x) = x + 5
-def f(x): return x + 5
-f = lambda x: x + 5
-print(f'{f(2)} (function way)')
-print(f'{f(2)} (lambda way)')
+# # Lambda Functions - Exercise
+# # f(x) = x + 5
+# def f(x): return x + 5
+# f = lambda x: x + 5
+# print(f'{f(2)} (function way)')
+# print(f'{f(2)} (lambda way)')
 
-# No more spaces
-def strip_spaces(str):
-   return ''.join(str.split(' '))
-strip_spaces1 = lambda str: ''.join(str.split(' '))
-print(strip_spaces('Monty Pythons Flying Circus')) 
-print(strip_spaces1('Monty Pythons Flying Circus')) 
+# # No more spaces
+# def strip_spaces(str):
+#    return ''.join(str.split(' '))
+# strip_spaces1 = lambda str: ''.join(str.split(' '))
+# print(strip_spaces('Monty Pythons Flying Circus')) 
+# print(strip_spaces1('Monty Pythons Flying Circus')) 
 
-# No more duplicates
-def join_list_no_duplicates(list_a,list_b):
-   return list(set(list_a + list_b))
-list_a = [1,2,3,4]
-list_b = [3,4,5,6,7]
-join_list_no_duplicates1 = lambda list_a, list_b: list(set(list_a + list_b))
-print(join_list_no_duplicates(list_a,list_b))
-print(join_list_no_duplicates1(list_a,list_b))
+# # No more duplicates
+# def join_list_no_duplicates(list_a,list_b):
+#    return list(set(list_a + list_b))
+# list_a = [1,2,3,4]
+# list_b = [3,4,5,6,7]
+# join_list_no_duplicates1 = lambda list_a, list_b: list(set(list_a + list_b))
+# print(join_list_no_duplicates(list_a,list_b))
+# print(join_list_no_duplicates1(list_a,list_b))
 
 #Complete the function so it returns a function
 def create_quad_func(a,b,c):
     '''return function f(x) = ax^2 + bx + c'''
-    return lambda x: 
+    return lambda x: a*x**2 + b*x + c
 f = create_quad_func(2,4,6)
-g = 
+g = create_quad_func(1,2,3)
+f1 = lambda x, a=2, b=4, c=6: a*x**2 + b*x + c
 print(f(2))
 print(g(2))
+print(f1(2))
 
 # # Dictionaries Exercise v 1.2, 1.5
 # #It’s...not really an adventure game...#Ver 1.0
