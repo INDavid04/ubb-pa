@@ -31,7 +31,7 @@
 # Integer sort
 signups = ['MPF104', 'MPF20', 'MPF2', 'MPF17', 'MPF3', 'MPF45']
 print(str(sorted(signups)) + ' (Lexicographic sort)')
-print(sorted()) 
+print(sorted(signups, key=lambda id: int(id[3:]))) # fara int() ar fi afisat 104 17 2 20 3 45, in loc de 2 3 17 20 45 104 
 
 # # Dictionaries Exercise v 1.2, 1.5
 # #It’s...not really an adventure game...#Ver 1.0
