@@ -28,10 +28,21 @@
 # print(f(2))
 # print(g(2))
 # print(f1(2))
-# Integer sort
-signups = ['MPF104', 'MPF20', 'MPF2', 'MPF17', 'MPF3', 'MPF45']
-print(str(sorted(signups)) + ' (Lexicographic sort)')
-print(sorted(signups, key=lambda id: int(id[3:]))) # fara int() ar fi afisat 104 17 2 20 3 45, in loc de 2 3 17 20 45 104 
+# # Integer sort
+# signups = ['MPF104', 'MPF20', 'MPF2', 'MPF17', 'MPF3', 'MPF45']
+# print(str(sorted(signups)) + ' (Lexicographic sort)')
+# print(sorted(signups, key=lambda id: int(id[3:]))) # fara int() ar fi afisat 104 17 2 20 3 45, in loc de 2 3 17 20 45 104 
+# Sort this by score using lambda!
+class Player:
+   def __init__(self, name, score):
+       self.name = name
+       self.score =  score
+Eric = Player('Eric', 116700)
+John = Player('John', 24327)
+Terry = Player('Terry', 150000)
+player_list = [Eric, John, Terry]
+
+print([player.name for player in player_list])
 
 # # Dictionaries Exercise v 1.2, 1.5
 # #It’s...not really an adventure game...#Ver 1.0
