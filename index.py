@@ -41,7 +41,7 @@ Eric = Player('Eric', 116700)
 John = Player('John', 24327)
 Terry = Player('Terry', 150000)
 player_list = [Eric, John, Terry]
-
+player_list.sort(key = lambda id: id.score)
 print([player.name for player in player_list])
 
 # # Dictionaries Exercise v 1.2, 1.5
