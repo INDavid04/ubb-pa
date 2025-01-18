@@ -1,3 +1,25 @@
+# Colocviu 1 Subiectul 1 Punctul a
+def citire_matrice(nume_fisier):
+    f = open(nume_fisier, 'r')
+    matrice = []
+    for linie in f:
+        valori = list(map(int, linie.split()))
+        if(matrice and len(valori) != len(matrice[0])):
+            return None
+        matrice.append(valori)
+    return matrice
+matricea_citita = citire_matrice("./assets/citire_matrice.in")
+print("Matricea sub forma unei liste de liste")
+if matricea_citita is None:
+    print("Matricea are un numar diferit de elemente pe cel putin o linie. Verifica daca numarul de elemente de pe fiecare linie este acelasi!")
+else:
+    print(matricea_citita)
+print("Matricea sub forma unui tablou")
+for linie in matricea_citita:
+    for element in linie:
+        print(element)
+    print("\n")
+
 # # Lambda Functions - Exercise
 # # f(x) = x + 5
 # def f(x): return x + 5
@@ -32,17 +54,17 @@
 # signups = ['MPF104', 'MPF20', 'MPF2', 'MPF17', 'MPF3', 'MPF45']
 # print(str(sorted(signups)) + ' (Lexicographic sort)')
 # print(sorted(signups, key=lambda id: int(id[3:]))) # fara int() ar fi afisat 104 17 2 20 3 45, in loc de 2 3 17 20 45 104 
-# Sort this by score using lambda!
-class Player:
-   def __init__(self, name, score):
-       self.name = name
-       self.score =  score
-Eric = Player('Eric', 116700)
-John = Player('John', 24327)
-Terry = Player('Terry', 150000)
-player_list = [Eric, John, Terry]
-player_list.sort(key = lambda id: id.score)
-print([player.name for player in player_list])
+# # Sort this by score using lambda!
+# class Player:
+#    def __init__(self, name, score):
+#        self.name = name
+#        self.score =  score
+# Eric = Player('Eric', 116700)
+# John = Player('John', 24327)
+# Terry = Player('Terry', 150000)
+# player_list = [Eric, John, Terry]
+# player_list.sort(key = lambda id: id.score)
+# print([player.name for player in player_list])
 
 # # Dictionaries Exercise v 1.2, 1.5
 # #It’s...not really an adventure game...#Ver 1.0
