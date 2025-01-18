@@ -49,30 +49,46 @@
 # print(i2)
 
 # # Colocviu 1 Subiectul 2 Punctul a
-# def modifica_prefix(x, y, prop):
-#     final_prop = ""
-#     cnt_modificari = 0
-#     len_x = len(x)
-#     len_y = len(y)
-#     cuvinte = prop.split()
-#     for cuvant in cuvinte:
-#         if(cuvant[0:len_x] == x):
-#             cnt_modificari += 1
-#             sufix = cuvant[len_x:]
-#             cuvant = y + sufix
-#         final_prop += cuvant + " "
-#     return final_prop, cnt_modificari
+def modifica_prefix(x, y, prop):
+    final_prop = ""
+    cnt_modificari = 0
+    len_x = len(x)
+    len_y = len(y)
+    cuvinte = prop.split()
+    for cuvant in cuvinte:
+        if(cuvant[0:len_x] == x):
+            cnt_modificari += 1
+            sufix = cuvant[len_x:]
+            cuvant = y + sufix
+        final_prop += cuvant + " "
+    return final_prop, cnt_modificari
 # propozitie, contor = modifica_prefix("cea", "ca", "Aceasta este cea mai smechera zi")
 # print(propozitie)
 # print(contor)
 
-# Colocviu 1 Subiectul 2 Punctul a
+# # Colocviu 1 Subiectul 2 Punctul b
 def poz_max(arr):
     maxim = max(arr)
     for i in range (0, len(arr)):
         if maxim == arr[i]:
             return i + 1
-print(poz_max([91, 92, 93, 94]))
+# print(poz_max([91, 92, 93, 94]))
+
+# Colocviu 1 Subiectul 2 Punctul c
+f = open("./assets/propozitii.in", 'r')
+arr = str(input("Introdu x, y separate printr-un spatiu: "))
+arr = tuple(arr.split())
+modificari_arr = list()
+x, y = arr[0], arr[1]
+i = 1
+for linie in f:
+    propozitie, modificari = modifica_prefix(x, y, linie)
+    print(propozitie)
+    modificari_arr.append(modificari)
+    i += 1
+for i in range  (0, len(modificari_arr)):
+    if (modificari_arr[i] == max(modificari_arr)):
+        print(i + 1)
 
 # # Lambda Functions - Exercise
 # # f(x) = x + 5
