@@ -1,24 +1,45 @@
-# Colocviu 1 Subiectul 1 Punctul a
-def citire_matrice(nume_fisier):
-    f = open(nume_fisier, 'r')
-    matrice = []
-    for linie in f:
-        valori = list(map(int, linie.split()))
-        if(matrice and len(valori) != len(matrice[0])):
-            return None
-        matrice.append(valori)
-    return matrice
-matricea_citita = citire_matrice("./assets/citire_matrice.in")
-print("Matricea sub forma unei liste de liste")
-if matricea_citita is None:
-    print("Matricea are un numar diferit de elemente pe cel putin o linie. Verifica daca numarul de elemente de pe fiecare linie este acelasi!")
-else:
-    print(matricea_citita)
-print("Matricea sub forma unui tablou")
-for linie in matricea_citita:
-    for element in linie:
-        print(element)
-    print("\n")
+# # Colocviu 1 Subiectul 1 Punctul b
+def multimi(matrice, *indici):
+    def prima_e_ultima_cifra(numar):
+        cuvant = str(numar)
+        return cuvant[0] == cuvant[-1]
+    e_prima_intersectie_negativa = True
+    intersectie_negativa = set()
+    reuniune_pozitiva_prima_si_ultima_cifra_egale = set()
+    for i in indici:
+        linie = matrice[i]
+        negativa = {element for element in linie if element < 0}
+        pozitiva = {element for element in linie if (element > 0 and prima_e_ultima_cifra(element))}
+        if(not e_prima_intersectie_negativa):
+            intersectie_negativa &= negativa
+        else:
+            intersectie_negativa = negativa
+        reuniune_pozitiva_prima_si_ultima_cifra_egale |= pozitiva
+    return intersectie_negativa, reuniune_pozitiva_prima_si_ultima_cifra_egale
+intersectie, reuniune = multimi([[1, 2, -5], [-3, 454, 89], [90, -2, -121]], 1, -1)
+print(intersectie, reuniune)
+
+# # Colocviu 1 Subiectul 1 Punctul a
+# def citire_matrice(nume_fisier):
+#     f = open(nume_fisier, 'r')
+#     matrice = []
+#     for linie in f:
+#         valori = list(map(int, linie.split()))
+#         if(matrice and len(valori) != len(matrice[0])):
+#             return None
+#         matrice.append(valori)
+#     return matrice
+# matricea_citita = citire_matrice("./assets/citire_matrice.in")
+# print("Matricea sub forma unei liste de liste")
+# if matricea_citita is None:
+#     print("Matricea are un numar diferit de elemente pe cel putin o linie. Verifica daca numarul de elemente de pe fiecare linie este acelasi!")
+# else:
+#     print(matricea_citita)
+# print("Matricea sub forma unui tablou")
+# for linie in matricea_citita:
+#     for element in linie:
+#         print(element)
+#     print("\n")
 
 # # Lambda Functions - Exercise
 # # f(x) = x + 5
