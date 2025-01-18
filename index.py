@@ -108,17 +108,17 @@ for i, line in enumerate(f):
     else:
         nume = ""
         cod = line_arr[0]
-        for i in range(3):
-            if (autori[i]["cod_autor"] == cod):
-                nume += autori[i]["nume_autor"] + " " + autori[i]["prenume_autor"]
+        for j in range(nr_autori):
+            if (autori[j]["cod_autor"] == cod):
+                nume += autori[j]["nume_autor"] + " " + autori[j]["prenume_autor"]
         carti.append({
+            "cod_autor": line_arr[0],
             "cod_carte": line_arr[1],
             "an_aparitie": line_arr[2],
             "numar_pagini": line_arr[3],
             "nume_carte": " ".join(line_arr[4:]),
             "nume_autor": nume
         })
-    i += 1
 f.close()
 # for carte in carti:
 #     print(carte)
@@ -131,12 +131,40 @@ def stergere_carte(carti, cod_carte_de_sters):
             cartea_nu_exista = False
             print("Cartea a fost scrisa de " + str(carti[i]["nume_autor"]))
             del carti[i]
+            break
     if cartea_nu_exista:
         print("Cartea nu exista.")
     else:
         for carte in carti:
             print(carte)
-stergere_carte(carti, 111)
+# stergere_carte(carti, 111)
+
+# Colocviu 1 Subiectul 3 Punctul 
+def carti_autor(carti, cod_autor):
+    informatii = list()
+    for carte in carti:
+        nume_an_pagini = tuple()
+        if carte["cod_autor"] == str(cod_autor):
+            informatii.append((
+                carte["nume_carte"],
+                carte["an_aparitie"],
+                carte["numar_pagini"]
+            ))
+    return informatii
+cod_autor_citit = input("Introduceti codul autorului: ")
+lista_carti = carti_autor(carti, cod_autor_citit)
+lista_carti = sorted(lista_carti, key=lambda carte: (carte[0], carte[1], carte[2]))
+codul_nu_este_corect = True
+for carte in carti:
+    if carte["cod_autor"] == cod_autor_citit:
+        print(carte["nume_autor"])
+        codul_nu_este_corect = False
+        break
+if codul_nu_este_corect:
+    print("cod incorect")
+else:
+    for carte in lista_carti:
+        print(f"{carte[0]} {carte[1]} {carte[2]}")
 
 # # Lambda Functions - Exercise
 # # f(x) = x + 5
