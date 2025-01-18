@@ -1,13 +1,13 @@
 # # Colocviu 1 Subiectul 1 Punctul a
-def citire_matrice(nume_fisier):
-    f = open(nume_fisier, 'r')
-    matrice = []
-    for linie in f:
-        valori = list(map(int, linie.split()))
-        if(matrice and len(valori) != len(matrice[0])):
-            return None
-        matrice.append(valori)
-    return matrice
+# def citire_matrice(nume_fisier):
+#     f = open(nume_fisier, 'r')
+#     matrice = []
+#     for linie in f:
+#         valori = list(map(int, linie.split()))
+#         if(matrice and len(valori) != len(matrice[0])):
+#             return None
+#         matrice.append(valori)
+#     return matrice
 # matricea_citita = citire_matrice("./assets/citire_matrice.in")
 # print("Matricea sub forma unei liste de liste")
 # if matricea_citita is None:
@@ -21,32 +21,50 @@ def citire_matrice(nume_fisier):
 #     print("\n")
 
 # # Colocviu 1 Subiectul 1 Punctul b
-def multimi(matrice, *indici):
-    def prima_e_ultima_cifra(numar):
-        cuvant = str(numar)
-        return cuvant[0] == cuvant[-1]
-    e_prima_intersectie_negativa = True
-    intersectie_negativa = set()
-    reuniune_pozitiva_prima_si_ultima_cifra_egale = set()
-    for i in indici:
-        linie = matrice[i]
-        negativa = {element for element in linie if element < 0}
-        pozitiva = {element for element in linie if (element > 0 and prima_e_ultima_cifra(element))}
-        if(not e_prima_intersectie_negativa):
-            intersectie_negativa &= negativa
-        else:
-            intersectie_negativa = negativa
-        reuniune_pozitiva_prima_si_ultima_cifra_egale |= pozitiva
-    return intersectie_negativa, reuniune_pozitiva_prima_si_ultima_cifra_egale
+# def multimi(matrice, *indici):
+#     def prima_e_ultima_cifra(numar):
+#         cuvant = str(numar)
+#         return cuvant[0] == cuvant[-1]
+#     e_prima_intersectie_negativa = True
+#     intersectie_negativa = set()
+#     reuniune_pozitiva_prima_si_ultima_cifra_egale = set()
+#     for i in indici:
+#         linie = matrice[i]
+#         negativa = {element for element in linie if element < 0}
+#         pozitiva = {element for element in linie if (element > 0 and prima_e_ultima_cifra(element))}
+#         if(not e_prima_intersectie_negativa):
+#             intersectie_negativa &= negativa
+#         else:
+#             intersectie_negativa = negativa
+#         reuniune_pozitiva_prima_si_ultima_cifra_egale |= pozitiva
+#     return intersectie_negativa, reuniune_pozitiva_prima_si_ultima_cifra_egale
 # intersectie, reuniune = multimi([[1, 2, -5], [-3, 454, 89], [90, -2, -121]], 1, -1)
 # print(intersectie, reuniune)
 
 # Colocviu 1 Subiectul 1 Punctul c
-matrice = citire_matrice("./assets/citire_matrice.in")
-i1, r1 = multimi(matrice, -1, -2, -3)
-i2, r2 = multimi(matrice, 1, -1)
-print(r1)
-print(i2)
+# matrice = citire_matrice("./assets/citire_matrice.in")
+# i1, r1 = multimi(matrice, -1, -2, -3)
+# i2, r2 = multimi(matrice, 1, -1)
+# print(r1)
+# print(i2)
+
+# Colocviu 1 Subiectul 2 Punctul a
+def modifica_prefix(x, y, prop):
+    final_prop = ""
+    cnt_modificari = 0
+    len_x = len(x)
+    len_y = len(y)
+    cuvinte = prop.split()
+    for cuvant in cuvinte:
+        if(cuvant[0:len_x] == x):
+            cnt_modificari += 1
+            sufix = cuvant[len_x:]
+            cuvant = y + sufix
+        final_prop += cuvant + " "
+    return final_prop, cnt_modificari
+propozitie, contor = modifica_prefix("cea", "ca", "Aceasta este cea mai smechera zi")
+print(propozitie)
+print(contor)
 
 # # Lambda Functions - Exercise
 # # f(x) = x + 5
