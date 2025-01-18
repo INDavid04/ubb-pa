@@ -48,23 +48,31 @@
 # print(r1)
 # print(i2)
 
+# # Colocviu 1 Subiectul 2 Punctul a
+# def modifica_prefix(x, y, prop):
+#     final_prop = ""
+#     cnt_modificari = 0
+#     len_x = len(x)
+#     len_y = len(y)
+#     cuvinte = prop.split()
+#     for cuvant in cuvinte:
+#         if(cuvant[0:len_x] == x):
+#             cnt_modificari += 1
+#             sufix = cuvant[len_x:]
+#             cuvant = y + sufix
+#         final_prop += cuvant + " "
+#     return final_prop, cnt_modificari
+# propozitie, contor = modifica_prefix("cea", "ca", "Aceasta este cea mai smechera zi")
+# print(propozitie)
+# print(contor)
+
 # Colocviu 1 Subiectul 2 Punctul a
-def modifica_prefix(x, y, prop):
-    final_prop = ""
-    cnt_modificari = 0
-    len_x = len(x)
-    len_y = len(y)
-    cuvinte = prop.split()
-    for cuvant in cuvinte:
-        if(cuvant[0:len_x] == x):
-            cnt_modificari += 1
-            sufix = cuvant[len_x:]
-            cuvant = y + sufix
-        final_prop += cuvant + " "
-    return final_prop, cnt_modificari
-propozitie, contor = modifica_prefix("cea", "ca", "Aceasta este cea mai smechera zi")
-print(propozitie)
-print(contor)
+def poz_max(arr):
+    maxim = max(arr)
+    for i in range (0, len(arr)):
+        if maxim == arr[i]:
+            return i + 1
+print(poz_max([91, 92, 93, 94]))
 
 # # Lambda Functions - Exercise
 # # f(x) = x + 5
