@@ -106,17 +106,37 @@ for i, line in enumerate(f):
             "prenume_autor": line_arr[2]
         })
     else:
+        nume = ""
+        cod = line_arr[0]
+        for i in range(3):
+            if (autori[i]["cod_autor"] == cod):
+                nume += autori[i]["nume_autor"] + " " + autori[i]["prenume_autor"]
         carti.append({
-            "cod_autor": line_arr[0],
             "cod_carte": line_arr[1],
             "an_aparitie": line_arr[2],
             "numar_pagini": line_arr[3],
-            "nume_carte": " ".join(line_arr[4:])
+            "nume_carte": " ".join(line_arr[4:]),
+            "nume_autor": nume
         })
     i += 1
 f.close()
-print(autori)
-print(carti)
+# for carte in carti:
+#     print(carte)
+
+# Colocviu 1 Subiectul 3 Punctul b
+def stergere_carte(carti, cod_carte_de_sters):
+    cartea_nu_exista = True
+    for i in range(nr_carti):
+        if(carti[i]["cod_carte"] == str(cod_carte_de_sters)):
+            cartea_nu_exista = False
+            print("Cartea a fost scrisa de " + str(carti[i]["nume_autor"]))
+            del carti[i]
+    if cartea_nu_exista:
+        print("Cartea nu exista.")
+    else:
+        for carte in carti:
+            print(carte)
+stergere_carte(carti, 111)
 
 # # Lambda Functions - Exercise
 # # f(x) = x + 5
