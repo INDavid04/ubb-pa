@@ -7,7 +7,23 @@ print('Project -  Crypto')
 # run encode or decode
 # return result
 # clean and beautify the code 
-
+message = input("Enter your message here: ")
+new_message = ""
+encode = "abcdefghijklmnopqrstuvwxyz"
+decode = "qwertyuiopasdfghjklzxcvbnm"
+n = len(message)
+for i in range(n):
+    letter_position = encode.find(message[i])
+    new_message += decode[letter_position]
+print("Mesajul criptat", new_message, sep=" este ")
+message = "altceva"
+print("Mesajul a suferit modificari, acum este", message, sep=": ")
+message = ""
+for i in range(n):
+    letter_position = decode.find(new_message[i])
+    message += encode[letter_position]
+print("Mesajul decriptat", message, sep=" este ")
+    
 
 # # Colocviu 1 Subiectul 1 Punctul a
 # def citire_matrice(nume_fisier):
