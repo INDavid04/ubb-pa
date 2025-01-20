@@ -109,7 +109,7 @@ s="programarea"
 print("a" in s)
 print(s.count("a"))
 print(s.count("a",6)) #numara incepand de la pozitia 5
-print(s.count("a",6,10)) #numara incepand de la pozitia 5
+print(s.count("a",6,10)) #numara incepand de la pozitia 5 pana la pozitia 10 exclusiv adica de ca s[5] pana la s[9]
 
 #pozitii
 p=s.index("a")
@@ -123,6 +123,7 @@ try:
 except ValueError:
     pass
 print("ok")
+
 #exc: sa se afiseze toate pozitiile pe care apare "a" in s
 p=s.index("a")
 try:
@@ -159,7 +160,7 @@ s="mare"
 s_sortat=sorted(s)
 print(s_sortat)
 #---- siruri caractere - unificari/separari
-#separator.join(ecventa de cuvinte)
+#separator.join(secventa de cuvinte)
 ls=["programarea", "algoritmilor", "seria", "14"]
 s=" ".join(ls)
 print(ls)
@@ -180,7 +181,7 @@ print(ls)
 print(" ".join(ls))
 
 ############
-# C3 Array #
+# C3 Array # @ TODO: contiune from here;
 ############
 
 """
@@ -1170,18 +1171,18 @@ def poz_rand(v, p, u):
 
 
 def poz(v, p, u):
-    i = p;
+    i = p
     j = u
-    depli = 0;
+    depli = 0
     deplj = -1
     while i < j:
         if v[i] > v[j]:
             v[i], v[j] = v[j], v[i]
             # depli, deplj = -deplj, -depli
-            aux = depli;
-            depli = -deplj;
-            deplj = -aux;
-        i += depli;
+            aux = depli
+            depli = -deplj
+            deplj = -aux
+        i += depli
         j += deplj
 
     return i
@@ -1491,9 +1492,9 @@ v=[5,1,6,3,1,9,11,-4]
 sortare_interclasare(v)
 print(v)
 
-##########################
-# C11 Suma (ne)recursiva #
-##########################
+###################################
+# C11 Traseu / Suma (ne)recursiva #
+###################################
 
 a=[[2],[4,5],[10,7,3],[1,5,2,1],[8,4,5,6,7,11]]
 a=[[2],[4,5],[10,7,3],[1,5,2,1]]
@@ -1545,3 +1546,464 @@ traseu(0,0)
 #Observatii:
 #1. Putem afisa traseul si nerecursiv
 #2. Putem folosi tot matricea a pentru a caclula suma, in loc de s
+
+##############
+# C12 Monede #
+##############
+
+S=12
+S=19
+v=[1,6,7]
+inf=S+1
+nr=[inf]*(S+1) #daca nu se poate descompune -> inf =S+1
+nr[0]=0
+desc=[inf]*(S+1)
+for s in range(1,S+1):
+    if s in v:
+        nr[s]=1
+        desc[s]=s
+    else:
+        nrmin=inf
+        for moneda in v:
+            if moneda<=s and nr[s-moneda]<nrmin:
+                nrmin=nr[s-moneda]
+                desc[s]=moneda
+        if nrmin<inf:
+            nr[s]=1+nrmin
+print(nr)
+print(desc)
+if nr[S]==inf:
+    print("nu se poate plati suma")
+else:
+    s=S
+    while s!=0:
+        print(desc[s],end=" ")
+        s=s-desc[s]
+
+def descompune(s):
+
+    if nr[s] is not None:
+        return nr[s]
+    if s==0:
+        nr[0]=0
+        return 0
+    nrmin = inf
+    for moneda in v:
+        if moneda <= s and  descompune(s - moneda)< nrmin: #ar fi mers memorat descompune(s - moneda) in variabia
+            nrmin = descompune(s - moneda)
+    if nrmin<inf:
+        nr[s]=1+nrmin
+    else:
+        nr[s]=inf
+    return nr[s]
+
+S=19
+nr=[None]*(S+1)
+print()
+print(descompune(S))
+
+####################################
+# C13 Programare dinamica - Rucsac #
+####################################
+
+f=open("rucsac.in")
+g=[int(x) for x in f.readline().split()]
+c=[int(x) for x in f.readline().split()]
+G=int(f.readline())
+f.close()
+n=len(g)
+g.insert(0,0) #obiectul 1 va fi pe pozitia 1
+c.insert(0,0)
+s=[[0 for i in range(G+1)] for j in range(n+1)]
+#prima linie si prima coloana raman 0 (corespun 0 obiecte/greutate 0
+for i in range(1,n+1):
+    for gr in range(1, G+1):
+        if g[i]>gr:
+            s[i][gr]=s[i-1][gr] #nu putem lua obiectul i, are greutate prea amre
+        else:
+            s[i][gr] =max(s[i-1][gr], s[i-1][gr-g[i]]+c[i])
+print(*s,sep="\n")
+print(s[n][G])
+
+#determinarea solutiei - de la coltul de jos inapoi
+print("obiectele")
+i=n
+gr=G
+while i>0 and gr >0:
+    if s[i][gr]!=s[i-1][gr]: #luam obiectul i
+        print(i)
+        gr-=g[i]
+        i-=1
+    else:
+        i-=1
+
+############################
+# C13 Subsir crescator max #
+############################
+
+#v=[5,3,7,8,6,10]
+v=[8,3,1,4,6,5,11]
+n=len(v)
+lung=[1]*n
+succ=[-1]*n #[None]*n
+
+lung[n-1]=1 #stim direct
+#ord de calcul - de la ultimul catre primul
+for i in range(n-2,-1,-1):
+    lmax=0
+    for j in range(i+1,n):
+        if v[i]<v[j] and lung[j]>lmax:
+            lmax=lung[j]
+            succ[i]=j
+    lung[i]=1+lmax
+
+print(*lung)
+print(*succ)
+
+pmax=0
+for i in range(n):
+    if lung[i]>lung[pmax]:
+        pmax=i
+print("lungimea maxima ",lung[pmax])
+
+p=pmax
+for i in range(lung[pmax]):
+    print(v[p],end=" ")
+    p=succ[p]
+
+#numaram cate subisruri optime exista
+print(lung)
+
+nr=[0]*n
+nr[n-1]=1
+for i in range(n-2,-1,-1):
+    for j in range(i+1,n):
+        if v[i]<v[j] and lung[j]==lung[i]-1:
+            nr[i]+=nr[j]
+    if nr[i]==0:
+        nr[i]=1
+print(nr)
+nr_optim=0
+for i in range(n):
+    if lung[i]==lung[pmax]:
+        nr_optim+=nr[i]
+print(nr_optim)
+
+#######################
+# C13 Aranjamente BKT #
+#######################
+
+"""
+Aranjamente de m din multimea {1,2,..,n}
+1 2 3
+2 3 1
+3 2 1
+1. Reprez solutiei
+x=x_0,.., x_{m-1}
+2) Fiecare element x_k poate lua valorile
+x_k - 1,2..., n
+3) Conditiile finale
+elementele sa fie distincte x_i!=x_j
+4) Conditiile de continuare la pasul k (!!) - cand ii dam valoare lui x_k
+x_k!=x_0,...,x_{k-1}
+"""
+def continuare(k,x):
+    for i in range(k): #x[k]in x[:k] x.index(x[k],0,k)...
+        if x[i]==x[k]:
+            return False
+    return True
+
+def back(k,x,n,m):
+    if k == m: #daca am completat toate pozitiile si incerc sa completez x_m -> avem solutie
+        #testam conditiile finale - doar in cazul in care cond de continuare nu au fost suficiente
+        print(*x)
+        #daca x retine indici din A(!!!de la 1 la n)
+        for i in range(m):
+            print(A[x[i]-1],end=" ")
+        print()
+    else:
+        #luam la rand valorile posibile pentru x_k
+        for i in range(1,n+1): #for i in A, daca x contine direct elemente din A
+            x[k]=i
+            if continuare(k,x):
+                back(k+1,x,n,m)
+def aranjamente(m,n):
+    x=[0]*m
+    back(0,x,n,m)
+A=["s1","s2","s3","s4"]
+aranjamente(3,4)
+
+#####################
+# C13 Combinari BKT #
+#####################
+
+"""
+Combinari  de m din multimea {1,2,..,n}
+1 2 3 = 2 3 1 = 3 2 1 -> o generam doar pe cea ord crescator
+1. Reprez solutiei
+x=x_0,.., x_{m-1}
+2) Fiecare element x_k poate lua valorile
+x_k - 1,2..., n
+3) Conditiile finale
+elementele sa fie distincte x_i!=x_j +Crescator
+4) Conditiile de continuare la pasul k (!!) - cand ii dam valoare lui x_k
+x_k>x[k-1] (Deci x_k este diferit de x_0,..,x_{k-1}
+"""
+def continuare(k,x):
+     return k==0 or x[k]>x[k-1]
+
+def back(k,x,n,m):
+    if k == m: #daca am completat toate pozitiile si incerc sa completez x_m -> avem solutie
+        #testam conditiile finale - doar in cazul in care cond de continuare nu au fost suficiente
+        print(*x)
+
+
+    else:
+        #luam la rand valorile posibile pentru x_k
+        for i in range(1 if k==0 else x[k-1]+1,n+1):
+        #for i in range(1,n+1):
+            x[k]=i
+            #if continuare(k,x):
+            back(k+1,x,n,m)
+def combinari(m,n):
+    x=[0]*m
+    back(0,x,n,m)
+
+combinari(3,4)
+
+#####################
+# C13 Paranteze BKT #
+#####################
+
+def catalan(n):
+    cat=[0]*(n+1)
+    cat[0]=cat[1]=1
+    cat[2]=2
+    for j in range(3,n+1):
+        for i in range(0,j):
+            cat[j]+=cat[i]*cat[j-1-i]
+    return cat[n]
+
+def back(k,dif):
+    global nr
+    if k==2*n:
+        print("".join(x))
+        nr+=1
+    else:
+        #luam la rand valorile pentru x[k]:
+        x[k]='('
+        dif=dif+1
+        if dif<=2*n-k:
+            back(k+1,dif)
+        dif-=1
+        x[k]=')'
+        dif-=1
+        if dif>=0:
+            back(k + 1, dif)
+        dif+=1
+n=4
+x=[None for i in range(2*n)]
+nr=0
+back(0,0)
+print(nr)
+print(catalan(n))
+
+#################
+# C13 Permutari #
+#################
+
+"""
+Permutarile multimii {1,2,..,n}
+1. Reprez solutiei
+x=x_0,.., x_{n-1}
+2) Fiecare element x_k poate lua valorile
+x_k - 1,2..., n
+3) Conditiile finale
+elementele sa fie distincte x_i!=x_j
+4) Conditiile de continuare la pasul k (!!) - cand ii dam valoare lui x_k
+x_k!=x_0,...,x_{k-1}
+"""
+def continuare(k,x):
+    for i in range(k): #x[k]in x[:k] x.index(x[k],0,k)...
+        if x[i]==x[k]:
+            return False
+    return True
+
+def back(k,x,n):
+    if k == n: #daca am completat toate pozitiile si incerc sa completez x_n -> avem solutie
+        #testam conditiile finale - doar in cazul in care cond de continuare nu au fost suficiente
+        print(*x)
+    else:
+        #luam la rand valorile posibile pentru x_k
+        for i in range(1,n+1):
+            x[k]=i
+            if continuare(k,x):
+                back(k+1,x,n)
+def permutari(n):
+    x=[0]*n
+    back(0,x,n)
+permutari(3)
+
+def permutari_nerecursiv(n):
+    x=[0]*n
+    k=0
+    while k>=0: #cand k devine -1 => stop
+        if k==n:
+            print(*x,sep=",")
+            k-=1
+        else: #dam lui x[k] urmatarea valoare posibila, daca mai sunt valori
+            if x[k]<n:
+                x[k]=x[k]+1
+                if continuare(k,x):
+                    k+=1
+            else:
+                x[k]=0
+                k-=1
+permutari_nerecursiv(3)
+
+#########################
+# C13 Pal min partition #
+#########################
+
+class Solution:
+    def minCut(self, s: str) -> int:
+        n=len(s)
+        palindrom=[[True for i in range(n)] for j in range(n)]
+  
+        for dif in range(1,n)  :  
+            for i in range(n-dif):
+                j=i+dif
+                #print(s[i:j+1],i,j,i+1,j-1,palindrom[i+1][j-1],s[i],s[j],s[i]==s[j] and palindrom[i+1][j-1])
+                if s[i]==s[j] and palindrom[i+1][j-1]:
+                    palindrom[i][j]=True
+                else:
+                    palindrom[i][j]=False
+                #print(palindrom[i][j])
+        
+       #print(palindrom)
+        dp=[float("inf") for i in range(n)]
+        dp[0]=1
+        for i in range(1,n):
+            if palindrom[0][i]:
+                dp[i]=1
+            else:
+                for j in range(1,i+1):
+                    
+                    if palindrom[j][i]:
+                        dp[i]=min(dp[i],dp[j-1]+1)
+        #print(dp)     
+        return dp[n-1] -1
+
+####################
+# C13 Partitiile n #
+####################
+
+"""
+n=5
+1+1+1+1+1
+1+1+1+2
+..
+2+3 (= 3+2)
+5
+x=(x1,...,xp) (lungime variabila
+cond continuare suma<=n
+valori pt xk: 1...n  -+ crescator nestrict (pentru unicitate)
+
+"""
+def back(k,s,x,n):
+    if s==n:
+        print(*x[:k],sep="+")
+    else:
+        for i in range(1 if k==0 else x[k-1],n+1):
+            x[k]=i
+            s+=i
+            if s<=n:
+                back(k+1,s,x,n)
+            s-=i
+def partitie(n):
+    x=[0]*n
+    back(0,0,x,n)
+partitie(6)
+
+##################################################
+# C13 Subsir crescator max cu generare subsiruri #
+##################################################
+
+#v=[5,3,7,8,6,10]
+v=[8,3,1,4,6,5,11]
+n=len(v)
+lung=[1]*n
+succ=[-1]*n #[None]*n
+
+
+
+lung[n-1]=1 #stim direct
+#ord de calcul - de la ultimul catre primul
+for i in range(n-2,-1,-1):
+    lmax=0
+    for j in range(i+1,n):
+        if v[i]<v[j] and lung[j]>lmax:
+            lmax=lung[j]
+            succ[i]=j
+    lung[i]=1+lmax
+
+print(*lung)
+print(*succ)
+
+pmax=0
+for i in range(n):
+    if lung[i]>lung[pmax]:
+        pmax=i
+print("lungimea maxima ",lung[pmax])
+
+p=pmax
+for i in range(lung[pmax]):
+    print(v[p],end=" ")
+    p=succ[p]
+
+#numaram cate subisruri optime exista
+print(lung)
+
+nr=[0]*n
+nr[n-1]=1
+for i in range(n-2,-1,-1):
+    for j in range(i+1,n):
+        if v[i]<v[j] and lung[j]==lung[i]-1:
+            nr[i]+=nr[j]
+    if nr[i]==0:
+        nr[i]=1
+print(nr)
+nr_optim=0
+for i in range(n):
+    if lung[i]==lung[pmax]:
+        nr_optim+=nr[i]
+print(nr_optim)
+
+"""
+Toate subsirurile crescatoare de lungime maxima
+1) repr sol:
+x=(x0,..., x_{lung-1}) - indicii elementelor din subsir
+2)
+x0 - tb lung[x0]=lmax
+x1: x0<x1 (dupa x0), v[x0]<v[x1] (subsir crescator) si lung[x1]=lung[x0]-1
+analog pt xk
+"""
+lmax=lung[pmax]
+def back(k):
+    if k==lmax:
+        for i in x:
+            print(v[i],end=" ")
+        print()
+    else:
+        for j in range(x[k-1]+1,n): #toate pozitiile de dupa x[k-1]
+            x[k]=j
+            if v[x[k-1]]<v[x[k]] and lung[x[k]]==lung[x[k-1]]-1:
+                back(k+1)
+#pentru primul element - dam valori separat
+x=[0]*lmax
+for i in range(len(v)):
+    if lung[i]==lmax:
+        x[0]=i
+        back(1)
+
+# Delete last check on 10th of January 2025

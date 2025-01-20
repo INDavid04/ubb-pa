@@ -601,6 +601,176 @@ def create_events(file_name):
 create_events('input_event.txt')
 
 ##################
+# Laboratorul 10 #
+##################
+
+def problema_cuielor(nume_fisier):
+    intervals = []
+    with open('intervale.txt', 'r') as file:
+        for line in file:
+            a, b = map(int, line.split())
+            intervals.append((a, b))
+
+    intervals = sorted(intervals, key=lambda x: x[1])
+
+    nails = []
+    current_nail = float('-inf')
+
+    for interval in intervals:
+        if interval[0] > current_nail:
+            current_nail = interval[1]
+            nails.append(current_nail)
+
+    file_output = open('acoperire.txt', 'w')
+    for nail in nails:
+        file_output.write(f'{nail}\n')
+    file_output.close()
+
+problema_cuielor('intervale.txt')
+
+def eureni(nume_fisier_input, nume_fisier_output):
+    banknotes_used = 0
+    with open(nume_fisier_input, 'r') as file:
+        S, n, e = map(int, file.readline().split())
+        banknotes = []
+        for i in range(n, -1, -1):
+            banknotes.append(e ** i)
+
+        file_output = open(nume_fisier_output, 'w')
+        current_banknote_index = 0
+        while S > 0:
+            current_banknote_usages = 0
+            while S >= banknotes[current_banknote_index]:
+                S -= banknotes[current_banknote_index]
+                current_banknote_usages += 1
+
+            if current_banknote_usages != 0:
+                file_output.write(f'{banknotes[current_banknote_index]} {current_banknote_usages}\n')
+                banknotes_used += current_banknote_usages
+
+            current_banknote_index += 1
+        file_output.write(f'{banknotes_used}\n')
+        file_output.close()
+
+eureni('eureni.in', 'eureni.out')
+
+def cifre5(nume_fisier_input, nume_fisier_output):
+    with open(nume_fisier_input, 'r') as file:
+        n, k = map(int, file.readline().split())
+        v = list(map(int, file.readline().split()))
+
+    v.sort()
+
+    position, second_position = 0, len(v) - 1
+    while position < len(v) and v[position] == 0:
+        position += 1
+
+    if position == 0:
+        position -= k
+    position += (k - 1)
+    direction = -1
+    resulted_number = []
+    sum, index = 0, 0
+
+    while sum > 0 or index < len(v):
+        for i in range(k):
+            if index >= n:
+                break
+
+            if position == second_position and direction == -1: # Schimba directia si populam din fata
+                direction = 1
+                second_position = 0
+            elif second_position == position - k + 1 and direction == 1: # Schimba directia si populam din spate
+                direction = -1
+                second_position = position
+
+            sum += v[second_position]
+            second_position += direction
+            index += 1
+
+        resulted_number.append(sum % 10)
+        sum //= 10
+
+    with open(nume_fisier_output, "w") as file_output:
+        file_output.write("".join(map(str, reversed(resulted_number))))
+    file_output.close()
+
+cifre5('cifre5.in', 'cifre5.out')
+
+def maximum_grupe_sport():
+    n = int(input("Introduceti numarul de elevi: "))
+    h = int(input("Introduceti diferenta maxima permisa h: "))
+
+    heights = input(f"Introduceti inaltimile celor {n} elevi separate prin spatiu: ")
+    heights = list(map(int, heights.split()))
+    heights.sort()
+
+    maximum_groups = 0
+    i = 0
+    while i < len(heights) - 1:
+        if abs(heights[i] - heights[i + 1]) < h:
+            maximum_groups += 1
+            i += 2
+        else:
+            i += 1
+    print(f'Numarul maxim de grupe este: {maximum_groups}')
+# maximum_grupe_sport()
+
+def maximum_profit_activity(nume_fisier_input, nume_fisier_output):
+    activities = []
+    with open(nume_fisier_input, "r") as file:
+        n = int(file.readline().strip())
+        for i in range(n):
+            profit, termen = map(int, file.readline().split())
+            activities.append((profit, termen, i + 1))
+
+    activities.sort(key=lambda x: x[0], reverse=True)
+    time_slots = [False] * n
+
+    planified_activities = []
+    profit_total = 0
+    for activity in activities:
+        # Gasim cel mai tarziu timp disponibil pentru aceasta activitate
+        for t in range(min(activity[1] - 1, n - 1), -1, -1):
+            if not time_slots[t]:
+                time_slots[t] = True
+                planified_activities.append(str(activity[2]))
+                profit_total += activity[0]
+                break
+
+    output_file = open(nume_fisier_output, "w")
+    output_file.write(f"{profit_total}\n")
+    output_file.write(" ".join(planified_activities))
+    output_file.close()
+
+maximum_profit_activity("date.in", "date.out")
+
+import heapq
+heap = []
+heapq.heappush(heap, (2, 'sarcina 2'))
+heapq.heappush(heap, (1, 'sarcina 3'))
+heapq.heappush(heap, (3, 'sarcina 1'))
+
+while heap:
+    priority, name_activity = heapq.heappop(heap)
+    print(priority, name_activity)
+
+print()
+print()
+print()
+
+from queue import PriorityQueue
+
+pq = PriorityQueue()
+pq.put((2, 'sarcina 2'))
+pq.put((1, 'sarcina 3'))
+pq.put((3, 'sarcina 1'))
+
+while not pq.empty():
+    priority, name_activity = pq.get()
+    print(priority, name_activity)
+
+##################
 # Laboratorul 11 #
 ##################
 
@@ -877,3 +1047,368 @@ while i > 0 or j > 0:
 path.append((0, 0))
 path.reverse()
 print(path)
+
+##################
+# Laboratorul 14 #
+##################
+
+"""
+Problema 1 a)
+"""
+from collections import Counter
+def valid(suma_curenta, suma_totala):
+    # Verificăm dacă suma curentă nu depășește suma totală
+    return suma_curenta <= suma_totala
+
+def este_solutie(suma_curenta, suma_totala):
+    # Verificăm dacă suma curentă este exact egală cu suma totală
+    return suma_curenta == suma_totala
+
+def afiseaza(solutie, valori):
+    counter = Counter()
+    for i in range(len(valori)):
+        counter[valori[i]] = 0
+    for i in range(len(solutie)):
+        counter[solutie[i]] += 1
+    print(list(counter.values()))
+
+def backtracking(suma_totala, valori, solutie, index, suma_curenta):
+    # Testăm dacă am găsit o soluție
+    if este_solutie(suma_curenta, suma_totala):
+        print(solutie)
+        afiseaza(solutie, valori)
+        return
+
+    # Parcurgem toate opțiunile pentru moneda curentă
+    for i in range(index, len(valori)):
+        # Adăugăm o monedă de tipul curent la soluție
+        solutie.append(valori[i])
+        suma_curenta += valori[i]
+
+        # Verificăm dacă putem continua
+        if valid(suma_curenta, suma_totala):
+            backtracking(suma_totala, valori, solutie, i, suma_curenta)  # Putem folosi monede de același tip
+
+        # Revenim la starea anterioară
+        solutie.pop()
+        suma_curenta -= valori[i]
+
+# Exemplu de rulare:
+S = 20
+valori = [1, 5, 10]
+backtracking(S, valori, [], 0, 0)
+
+
+"""
+Problema 2
+"""
+def valid(suma_curenta, m):
+    # Verificăm dacă suma curentă nu depășește M
+    return suma_curenta <= m
+
+def este_solutie(suma_curenta, m):
+    # Verificăm dacă suma curentă este exact egală cu M
+    return suma_curenta == m
+
+def backtracking(m, multime, solutie, index, suma_curenta):
+    # Testăm dacă am găsit o soluție
+    if este_solutie(suma_curenta, m):
+        print(solutie)
+        return
+
+    # Parcurgem toate opțiunile
+    for i in range(index, len(multime)):
+        # Adăugăm elementul curent în soluție
+        solutie.append(multime[i])
+        suma_curenta += multime[i]
+
+        # Verificăm dacă putem continua
+        if valid(suma_curenta, m):
+            backtracking(m, multime, solutie, i + 1, suma_curenta)
+
+        # Revenim la starea anterioară
+        solutie.pop()
+        suma_curenta -= multime[i]
+
+# Exemplu de rulare:
+multime = [1, 2, 3, 4, 5]
+M = 6
+backtracking(M, multime, [], 0, 0)
+
+"""
+Problema 3
+"""
+def valid_echipa(echipa, fete, baieti):
+    # Verificăm dacă echipa conține cel puțin o fată și un băiat
+    contine_fata = any(member in fete for member in echipa)
+    contine_baiat = any(member in baieti for member in echipa)
+    return contine_fata and contine_baiat
+
+def este_solutie_echipa(echipa, k):
+    # Verificăm dacă echipa are dimensiunea dorită
+    return len(echipa) == k
+
+def backtracking_echipe(n, m, k, echipa, index, fete, baieti):
+    # Testăm dacă am găsit o soluție
+    if este_solutie_echipa(echipa, k):
+        if valid_echipa(echipa, fete, baieti):
+            print(echipa)
+        return
+
+    # Parcurgem toate opțiunile pentru membri
+    for i in range(index, n + m + 1):
+        # Adăugăm un elev în echipă
+        echipa.append(i)
+
+        # Continuăm construirea echipei
+        backtracking_echipe(n, m, k, echipa, i + 1, fete, baieti)
+
+        # Revenim la starea anterioară
+        echipa.pop()
+
+# Exemplu de rulare:
+n = 3  # Număr de fete
+m = 2  # Număr de băieți
+k = 3  # Dimensiunea echipei
+fete = list(range(1, n + 1))          # Fetele sunt numerotate de la 1 la n
+baieti = list(range(n + 1, n + m + 1))  # Băieții sunt numerotați de la n+1 la n+m
+backtracking_echipe(n, m, k, [], 1, fete, baieti)
+
+"""
+Problema 4
+"""
+def valid_suma_cifre(suma_curenta, suma_totala):
+    # Verificăm dacă suma curentă nu depășește suma totală
+    return suma_curenta <= suma_totala
+
+def este_solutie_suma_cifre(cifre, suma_totala, n):
+    # Verificăm dacă suma cifrelor curente este exact egală cu suma totală și lungimea este n
+    return sum(cifre) == suma_totala and len(cifre) == n
+
+def backtracking_cifre(n, s, cifre, suma_curenta):
+    # Verificăm dacă lista de cifre este prea lungă
+    if len(cifre) > n:
+        return
+
+    # Testăm dacă am găsit o soluție
+    if este_solutie_suma_cifre(cifre, s, n):
+        print("".join(map(str, cifre)))
+        return
+
+    # Generăm următoarele cifre
+    start = 1 if not cifre else 0  # Prima cifră nu poate fi 0
+    for cifra in range(start, 10):
+        # Adăugăm cifra curentă
+        cifre.append(cifra)
+        suma_curenta += cifra
+
+        # Verificăm dacă putem continua
+        if valid_suma_cifre(suma_curenta, s):
+            backtracking_cifre(n, s, cifre, suma_curenta)
+
+        # Revenim la starea anterioară
+        cifre.pop()
+        suma_curenta -= cifra
+
+# Exemplu de rulare:
+n = 3  # Număr de cifre
+s = 6  # Suma cifrelor
+backtracking_cifre(n, s, [], 0)
+
+"""
+Problema 5
+"""
+def valid_anagrama(anagrama, cuvant):
+    # Verificăm dacă lungimea anagramei nu depășește lungimea cuvântului original
+    return len(anagrama) <= len(cuvant)
+
+def este_solutie_anagrama(anagrama, cuvant):
+    # Verificăm dacă anagrama are exact lungimea cuvântului original
+    return len(anagrama) == len(cuvant)
+
+def backtracking_anagrame(cuvant, anagrama, folosite, anagrame_generate):
+    # Testăm dacă am găsit o soluție
+    if este_solutie_anagrama(anagrama, cuvant):
+        anagrame_generate.add("".join(anagrama))
+        return
+
+    # Parcurgem toate literele din cuvânt
+    for i in range(len(cuvant)):
+        if not folosite[i]:  # Folosim doar literele care nu au fost utilizate încă
+            # Marcăm litera ca folosită
+            folosite[i] = True
+            anagrama.append(cuvant[i])
+
+            # Continuăm generarea
+            if valid_anagrama(anagrama, cuvant):
+                backtracking_anagrame(cuvant, anagrama, folosite, anagrame_generate)
+
+            # Revenim la starea anterioară
+            anagrama.pop()
+            folosite[i] = False
+
+# Exemplu de rulare:
+cuvant = "abc"
+anagrame_generate = set()
+folosite = [False] * len(cuvant)
+backtracking_anagrame(cuvant, [], folosite, anagrame_generate)
+
+# Afișăm anagramele generate
+for anagrama in sorted(anagrame_generate):
+    print(anagrama)
+
+"""
+Problema 6
+"""
+def este_prim(numar):
+    if numar < 2:
+        return False
+    for d in range(2, int(numar**0.5) + 1):
+        if numar % d == 0:
+            return False
+    return True
+
+def genereaza_prime(pana_la):
+    # Generăm lista numerelor prime mai mici sau egale cu un anumit număr
+    return [numar for numar in range(2, pana_la + 1) if este_prim(numar)]
+
+def valid_descompunere(suma_curenta, n):
+    # Verificăm dacă suma curentă nu depășește \( n \)
+    return suma_curenta <= n
+
+def este_solutie_descompunere(suma_curenta, n):
+    # Verificăm dacă suma curentă este exact \( n \)
+    return suma_curenta == n
+
+def backtracking_descompunere(n, primes, solutie, index, suma_curenta):
+    # Testăm dacă am găsit o soluție
+    if este_solutie_descompunere(suma_curenta, n):
+        print("+".join(map(str, solutie)))
+        return
+
+    # Parcurgem toate opțiunile începând de la indexul curent
+    for i in range(index, len(primes)):
+        # Adăugăm un număr prim la soluție
+        solutie.append(primes[i])
+        suma_curenta += primes[i]
+
+        # Verificăm dacă putem continua
+        if valid_descompunere(suma_curenta, n):
+            backtracking_descompunere(n, primes, solutie, i, suma_curenta)
+
+        # Revenim la starea anterioară
+        solutie.pop()
+        suma_curenta -= primes[i]
+
+# Exemplu de rulare:
+n = 10  # Numărul de descompus
+primes = genereaza_prime(n)
+backtracking_descompunere(n, primes, [], 0, 0)
+
+"""
+Problema 7
+"""
+def backtracking_produs_cartezian(mulțimi, solutie, nivel):
+    # Verificăm dacă soluția este completă
+    if nivel == len(mulțimi):
+        print(solutie)
+        return
+
+    # Parcurgem fiecare element din mulțimea de pe nivelul curent
+    for element in mulțimi[nivel]:
+        # Adăugăm elementul curent la soluție
+        solutie.append(element)
+
+        # Continuăm cu nivelul următor
+        backtracking_produs_cartezian(mulțimi, solutie, nivel + 1)
+
+        # Revenim la starea anterioară
+        solutie.pop()
+
+# Exemplu de rulare:
+mulțimi = [
+    [1, 4],
+    [2, 6],
+    [10, 11, 12]
+]
+backtracking_produs_cartezian(mulțimi, [], 0)
+
+"""
+Problema 8
+"""
+def valid_chestionar(suma_curenta, punctaj_total, numar_curent, numar_total):
+    # Verificăm dacă suma curentă și numărul curent de întrebări respectă constrângerile
+    return suma_curenta <= punctaj_total and numar_curent <= numar_total
+
+def este_solutie_chestionar(suma_curenta, punctaj_total, numar_curent, numar_total):
+    # Verificăm dacă suma curentă este exact punctajul dorit și avem numărul de întrebări cerut
+    return suma_curenta == punctaj_total and numar_curent == numar_total
+
+def backtracking_chestionare(intrebari, punctaj_total, numar_total, solutie, index, suma_curenta, numar_curent):
+    # Testăm dacă am găsit o soluție
+    if este_solutie_chestionar(suma_curenta, punctaj_total, numar_curent, numar_total):
+        print(solutie)
+        return
+
+    # Parcurgem toate opțiunile pentru întrebări, fără a permite repetarea
+    for i in range(index, len(intrebari)):
+        # Adăugăm întrebarea curentă la soluție
+        solutie.append(i + 1)
+        suma_curenta += intrebari[i]
+        numar_curent += 1
+
+        # Verificăm dacă putem continua
+        if valid_chestionar(suma_curenta, punctaj_total, numar_curent, numar_total):
+            backtracking_chestionare(
+                intrebari,
+                punctaj_total,
+                numar_total,
+                solutie,
+                i + 1,  # Trecem la următoarea întrebare pentru a evita repetarea
+                suma_curenta,
+                numar_curent,
+            )
+
+        # Revenim la starea anterioară
+        solutie.pop()
+        suma_curenta -= intrebari[i]
+        numar_curent -= 1
+
+# Exemplu de rulare:
+intrebari = [1, 4, 2, 3, 5, 4]  # Punctajele întrebărilor
+a = 3  # Numărul de întrebări din chestionar
+p = 10  # Punctajul total dorit
+backtracking_chestionare(intrebari, p, a, [], 0, 0, 0)
+
+"""
+Problema 9
+"""
+def este_solutie_deranjament(permutare, n):
+    # Verificăm dacă fiecare persoană nu primește propria scrisoare
+    return all(permutare[i] != i + 1 for i in range(n))
+
+def backtracking_deranjament(n, permutare, folosite):
+    if len(permutare) == n:
+        # Dacă soluția este validă, o afișăm
+        if este_solutie_deranjament(permutare, n):
+            print(permutare)
+        return
+
+    # Parcurgem toate opțiunile pentru scrisori
+    for i in range(1, n + 1):
+        if not folosite[i - 1]:  # Scrisoarea nu a fost încă folosită
+            # Adăugăm scrisoarea curentă la permutare
+            permutare.append(i)
+            folosite[i - 1] = True
+
+            # Continuăm generarea
+            backtracking_deranjament(n, permutare, folosite)
+
+            # Revenim la starea anterioară
+            permutare.pop()
+            folosite[i - 1] = False
+
+# Exemplu de rulare:
+n = 3  # Numărul de persoane
+folosite = [False] * n  # Marcăm scrisorile folosite
+backtracking_deranjament(n, [], folosite)

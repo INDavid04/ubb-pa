@@ -1,3 +1,14 @@
+# Project - Crypto machine
+print('Project -  Crypto')
+# create keys string
+# autogenerate the values string by offsetting original string
+# create two dictionaries
+# user input 'the message' and mode
+# run encode or decode
+# return result
+# clean and beautify the code 
+
+
 # # Colocviu 1 Subiectul 1 Punctul a
 # def citire_matrice(nume_fisier):
 #     f = open(nume_fisier, 'r')
@@ -90,81 +101,81 @@
 #     if (modificari_arr[i] == max(modificari_arr)):
 #         print(i + 1)
 
-# Colocviu 1 Subiectul 3 Punctul a
-f = open("./assets/autori.in")
-nr_autori, nr_carti = 0, 0
-autori, carti = list(), list()
-i = 0
-for i, line in enumerate(f):
-    line_arr = line.strip().split()
-    if not i:
-        nr_autori, nr_carti = int(line_arr[0]), int(line_arr[1])
-    elif i <= nr_autori:
-        autori.append({
-            "cod_autor": line_arr[0],
-            "nume_autor": line_arr[1],
-            "prenume_autor": line_arr[2]
-        })
-    else:
-        nume = ""
-        cod = line_arr[0]
-        for j in range(nr_autori):
-            if (autori[j]["cod_autor"] == cod):
-                nume += autori[j]["nume_autor"] + " " + autori[j]["prenume_autor"]
-        carti.append({
-            "cod_autor": line_arr[0],
-            "cod_carte": line_arr[1],
-            "an_aparitie": line_arr[2],
-            "numar_pagini": line_arr[3],
-            "nume_carte": " ".join(line_arr[4:]),
-            "nume_autor": nume
-        })
-f.close()
+# # Colocviu 1 Subiectul 3 Punctul a
+# f = open("./assets/autori.in")
+# nr_autori, nr_carti = 0, 0
+# autori, carti = list(), list()
+# i = 0
+# for i, line in enumerate(f):
+#     line_arr = line.strip().split()
+#     if not i:
+#         nr_autori, nr_carti = int(line_arr[0]), int(line_arr[1])
+#     elif i <= nr_autori:
+#         autori.append({
+#             "cod_autor": line_arr[0],
+#             "nume_autor": line_arr[1],
+#             "prenume_autor": line_arr[2]
+#         })
+#     else:
+#         nume = ""
+#         cod = line_arr[0]
+#         for j in range(nr_autori):
+#             if (autori[j]["cod_autor"] == cod):
+#                 nume += autori[j]["nume_autor"] + " " + autori[j]["prenume_autor"]
+#         carti.append({
+#             "cod_autor": line_arr[0],
+#             "cod_carte": line_arr[1],
+#             "an_aparitie": line_arr[2],
+#             "numar_pagini": line_arr[3],
+#             "nume_carte": " ".join(line_arr[4:]),
+#             "nume_autor": nume
+#         })
+# f.close()
 # for carte in carti:
 #     print(carte)
 
-# Colocviu 1 Subiectul 3 Punctul b
-def stergere_carte(carti, cod_carte_de_sters):
-    cartea_nu_exista = True
-    for i in range(nr_carti):
-        if(carti[i]["cod_carte"] == str(cod_carte_de_sters)):
-            cartea_nu_exista = False
-            print("Cartea a fost scrisa de " + str(carti[i]["nume_autor"]))
-            del carti[i]
-            break
-    if cartea_nu_exista:
-        print("Cartea nu exista.")
-    else:
-        for carte in carti:
-            print(carte)
+# # Colocviu 1 Subiectul 3 Punctul b
+# def stergere_carte(carti, cod_carte_de_sters):
+#     cartea_nu_exista = True
+#     for i in range(nr_carti):
+#         if(carti[i]["cod_carte"] == str(cod_carte_de_sters)):
+#             cartea_nu_exista = False
+#             print("Cartea a fost scrisa de " + str(carti[i]["nume_autor"]))
+#             del carti[i]
+#             break
+#     if cartea_nu_exista:
+#         print("Cartea nu exista.")
+#     else:
+#         for carte in carti:
+#             print(carte)
 # stergere_carte(carti, 111)
 
-# Colocviu 1 Subiectul 3 Punctul 
-def carti_autor(carti, cod_autor):
-    informatii = list()
-    for carte in carti:
-        nume_an_pagini = tuple()
-        if carte["cod_autor"] == str(cod_autor):
-            informatii.append((
-                carte["nume_carte"],
-                carte["an_aparitie"],
-                carte["numar_pagini"]
-            ))
-    return informatii
-cod_autor_citit = input("Introduceti codul autorului: ")
-lista_carti = carti_autor(carti, cod_autor_citit)
-lista_carti = sorted(lista_carti, key=lambda carte: (carte[0], carte[1], carte[2]))
-codul_nu_este_corect = True
-for carte in carti:
-    if carte["cod_autor"] == cod_autor_citit:
-        print(carte["nume_autor"])
-        codul_nu_este_corect = False
-        break
-if codul_nu_este_corect:
-    print("cod incorect")
-else:
-    for carte in lista_carti:
-        print(f"{carte[0]} {carte[1]} {carte[2]}")
+# # Colocviu 1 Subiectul 3 Punctul c
+# def carti_autor(carti, cod_autor):
+#     informatii = list()
+#     for carte in carti:
+#         nume_an_pagini = tuple()
+#         if carte["cod_autor"] == str(cod_autor):
+#             informatii.append((
+#                 carte["nume_carte"],
+#                 carte["an_aparitie"],
+#                 carte["numar_pagini"]
+#             ))
+#     return informatii
+# cod_autor_citit = input("Introduceti codul autorului: ")
+# lista_carti = carti_autor(carti, cod_autor_citit)
+# lista_carti = sorted(lista_carti, key=lambda carte: (carte[0], carte[1], carte[2]))
+# codul_nu_este_corect = True
+# for carte in carti:
+#     if carte["cod_autor"] == cod_autor_citit:
+#         print(carte["nume_autor"])
+#         codul_nu_este_corect = False
+#         break
+# if codul_nu_este_corect:
+#     print("cod incorect")
+# else:
+#     for carte in lista_carti:
+#         print(f"{carte[0]} {carte[1]} {carte[2]}")
 
 # # Lambda Functions - Exercise
 # # f(x) = x + 5
