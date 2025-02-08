@@ -2,54 +2,60 @@
 # C1 Partea 1 #
 ###############
 
-x=1
+x = 1
 print(x, type(x))
-x="abd"
+x = "abd"
 print(x, type(x))
-if x=="abc":
-    print("nu")#plint("nu")
+if x == "abc":
+    print("nu") # afisam "nu" deoarece "abd" != "abc"
 else:
-    print("da",end=" ") #end - ce sir foloseste ca final, implicit-endline
+    print("da", end=" ") # end - ce sir foloseste ca final, implicit - endline
     print("pauza")
-print(x,"un sir", sep="=") #sep implicit spatiu
-print(x,"un sir", sep=" este ") #sep implicit spatiu
-x=input("dati x ") #str -pana la finalul liniei
-x=int(x)
-y=input("dati y ")
-y=int(y)
+print(x, "un sir", sep="=") # sep implicit spatiu
+print(x, "un sir", sep=" este ") # sep implicit spatiu
+x = input("dati x: ") # str - pana la finalul liniei
+x = int(x)
+y = input("dati y ")
+y = int(y)
 print(x+y)
 
 ###############
 # C1 Partea 2 #
 ###############
 
-x=7
-print(x,id(x))
-x=x+1
-print(x,id(x))
+x = 7
+print(x, id(x))
+x = x + 1
+print(x, id(x))
 
-x=100
-z=0
-y=z+100
-print(id(x),id(y))
-x=1000
-z=0
-y=z+1000
-print(id(x),id(y))
-x=1234567891234566923
-print(x,type(x))
+# De ce in prima parte imi afiseaza aceeasi valoare si in ca doilea caz imi afiseaza doua valori diferite?
 
-"""
-x=0.1
-print(x*x)
-print(x*x==0.01) #False - precizie
-print(abs(x*x-0.01)<1e-8) #True
-"""
+x = 100
+z = 0
+y = z + 100
+print(x, y, z, sep=" - ")
+print(id(x), id(y)) 
+
+x = 1000
+z = 0
+y = z + 1000
+print(x, y, z, sep=" - ")
+print(id(x), id(y))
+
+# Python face un integer learning pentru numerele cuprinse intre -5 si 256. Deoarece 100 se afla in acest interval x si y vor pointa catre aceeasi adresa de memorie, nu si in cazul lui 1000 care este in afara intervalului.
+
+x = 1234567891234566923
+print(x, type(x))
+
+x = 0.1
+print(x * x) # 0.010000000000000002
+print(x * x == 0.01) # False - precizie
+print(abs(x * x - 0.01) < 1e-8) #True
 
 #############################
 # C2 Instructiuni atribuire #
 #############################
-
+# TODO
 x = y = 2
 print(id(x), id(y))
 x, y = 1, 2
