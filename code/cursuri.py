@@ -17,7 +17,7 @@ x = input("dati x: ") # str - pana la finalul liniei
 x = int(x)
 y = input("dati y ")
 y = int(y)
-print(x+y)
+print(x + y)
 
 ###############
 # C1 Partea 2 #
@@ -55,7 +55,7 @@ print(abs(x * x - 0.01) < 1e-8) #True
 #############################
 # C2 Instructiuni atribuire #
 #############################
-# TODO
+
 x = y = 2
 print(id(x), id(y))
 x, y = 1, 2
@@ -63,8 +63,16 @@ print(x, y)
 x, y = y, x  # de tupluri dreapta => tuplu, nu este echivalent cu x=y , y=x
 print(x, y)
 
-# if .. elif... else
-# ultima cifra a lui 3**k
+# if ... elif ... else
+
+"""
+TODO Sa se afiseze ultima cifra a lui 3**k 
+"""
+
+# k:            0 1 2 3  | 4 ...
+# 3**k:         1 3 9 27 | 81 ...
+# ultima cifra: 1 3 9 7  | 1 ...
+
 k = 8
 if k % 4 == 0:
     print(1)
@@ -74,9 +82,9 @@ elif k % 4 == 2:
     print(9)
 else:
     print(7)
+
 # while
-# for
-# for var in secventa
+# for (for var in secventa)
 s = "abc"
 for litera in s:
     print(litera)
@@ -89,9 +97,11 @@ range(a,b, pas)
 print(list(range(10, 1, -1)))
 # break, continue
 # else - si pentru structuri repetitive (se executa daca nu s-a iesit cu break)
+
 """
-Sa se afiseze primul divizor propriu al lui n
+TODO Sa se afiseze primul divizor propriu al lui n
 """
+
 n = 25
 for i in range(2, int(n ** 0.5) + 1):
     if n % i == 0:
@@ -111,11 +121,12 @@ print(i)
 # C2 Secvente siruri. Cautarea #
 ################################
 
+#  012345678910
 s="programarea"
 print("a" in s)
 print(s.count("a"))
-print(s.count("a",6)) #numara incepand de la pozitia 5
-print(s.count("a",6,10)) #numara incepand de la pozitia 5 pana la pozitia 10 exclusiv adica de ca s[5] pana la s[9]
+print(s.count("a", 6)) # numara incepand de la pozitia 5
+print(s.count("a", 6, 10)) #numara incepand de la pozitia 5 pana la pozitia 10 exclusiv adica de ca s[5] pana la s[9]
 
 #pozitii
 p=s.index("a")
@@ -130,7 +141,18 @@ except ValueError:
     pass
 print("ok")
 
-#exc: sa se afiseze toate pozitiile pe care apare "a" in s
+"""
+TODO Sa se afiseze toate pozitiile pe care apare "a" in s
+"""
+
+"""
+My Solution:
+s = "programarea"
+for i in range(len(s)):
+    if s[i] == 'a':
+        print(i)
+"""
+
 p=s.index("a")
 try:
     while True:
@@ -139,34 +161,36 @@ try:
 except:
     pass
 
-#doar pt siruri -find - returneaza -1 daca elementul nu este gasit
-p=s.find("a")
-while p!=-1:
+# doar pt siruri -find - returneaza -1 daca elementul nu este gasit
+p = s.find("a")
+while p != -1:
     print(p)
-    p=s.find("a",p+1)
+    p = s.find("a",p+1)
 
-#rfind, rindex - cauta de la dr la stg (ultima aparite) - doar pt siruri
-p=s.rfind("a")
+# rfind, rindex - cauta de la dr la stg (ultima aparite) - doar pt siruri
+p = s.rfind("a")
 print(f"ultima pozitie {p}")
 
-#concatenari => obiect nou
-s=s[:3]+" "+s[5:]
+# concatenari => obiect nou
+s = s[:3] + " " + s[5:]
 print(s)
-n=7
-s="a"*n
+n = 7
+s = "a" * n
 print(s)
-v=[0]*n
+v = [0] * n
 print(v)
 
-#sorted -> returneaza lista
-v=[9,4,6,7]
-v_sortat=sorted(v)
-print(v_sortat,v)
-s="mare"
-s_sortat=sorted(s)
+# sorted -> returneaza lista
+v = [9, 4, 6, 7]
+v_sortat = sorted(v)
+print(v_sortat, v)
+s = "mare"
+s_sortat = sorted(s)
 print(s_sortat)
+
 #---- siruri caractere - unificari/separari
 #separator.join(secventa de cuvinte)
+
 ls=["programarea", "algoritmilor", "seria", "14"]
 s=" ".join(ls)
 print(ls)
@@ -178,36 +202,52 @@ print(cuv)
 
 #sir.split(separator) -> lista de cuvinte
 #daca nu se specifica separator - caractere albe
-s="programrea algoritmilor    seria 14"
-ls=s.split()
+s = "programrea algoritmilor    seria 14"
+ls = s.split()
 print(" ".join(ls))
 print(ls)
-ls=s.split(" ")
+ls = s.split(" ")
 print(ls)
 print(" ".join(ls))
 
 ############
-# C3 Array # @ TODO: contiune from here;
+# C3 Array #
 ############
 
 """
 clasa list- vector (array)
-elminarea primului elelemnt -> O(n)
-
+TODO Elminarea primului element -> O(n)
 """
-ls=[1,"abc",[3,4]] #imbricate, pot fi neomogene
-m=[[2,3],[5,6]]
-#lista vida
-ls=[]
-ls=list()
-#list(iterabil)->lista (cu fiecare element din iterabil)
-ls=list(range(6))
+
+lista = [7, 9, 1, 2]
+noua_lista = list(reversed(lista)) # v1
+lista.reverse() # v2
+lista.pop()
+lista.reverse()
+print(lista)
+
+ls = [1, "abc", [3,4]] # imbricate, pot fi neomogene
+m = [[2,3], [5,6]]
+ls=[] # lista vida
+ls = list()
+# list(iterabil)->lista (cu fiecare element din iterabil)
+ls = list(range(6))
 print(ls)
-ls=list("un cuvant") #sir elemnt=o litera
-print(ls) #lista de litere
+ls = list("un cuvant") # sir element = o litera
+print(ls) # lista de litere
 
 #Se pot initializa cu comprehensiune (list comprehension)
-#Exc - o lista cu primele n patrate perfecte
+"""
+TODO O lista cu primele n patrate perfecte
+"""
+
+"""
+My Solution:
+n = int(input("Pentru a afisa primele n patrate perfecte, introduceti n!\nn = "))
+for i in range(1, n + 1):
+    print(i*i)
+"""
+
 n=5
 ls=[]
 for i in range(1,n+1):
@@ -215,84 +255,137 @@ for i in range(1,n+1):
 print(ls)
 
 #ls=[expresie for element in iterabil]
-ls1=[i*i for i in range(1,n+1)]
+ls1 = [i*i for i in range(1, n+1)]
 print(ls1)
 
-##sa se creeze un vector cu n elemente egale cu 0
-v=[0]*n
-v[0]=1
+"""
+TODO Sa se creeze un vector cu n elemente egale cu 0
+"""
+
+# V1
+v = [0] * n
+v[0] = 1
 print(v)
-v=[]
+
+# V2
+v = []
 for i in range(n):
     v.append(0)
-v=[0 for i in range(n)]
-v[0]=3
+
+# V3
+v = [0 for i in range(n)]
+v[0] = 3
 print(v)
-#se se citeasca un vector de numere intregi cu elementele date pe o linie
-#9 0 23 4 7
-v=input().split()
+
+"""
+TODO Sa se citeasca un vector de numere intregi cu elementele date pe o linie
+"""
+
+"""
+My Solution:
+v = input().split()
+for i in range(len(v)):
+    v[i] = int(v[i])
+print(type(v[0]))
+"""
+
+# 9 0 23 4 7
+v = input().split()
 print(v)
 """
 for x in v:
-    x=int(x) #nu se modifica v
+    x = int(x) # nu se modifica v
 print(v)
 """
 for i in range(len(v)):
     v[i]=int(v[i])
 print(v)
 
+# V2 (comprehension)
 v=[int(x) for x in input().split() ]
 print(v)
 
 #citim 2 numere pe aceeasi linie
-m,n=[int(x) for x in input("dati doua numere ").split() ]
-print(m+n)
+m, n = [int(x) for x in input("dati doua numere ").split() ]
+print(m + n)
 
-#Comprehensiune conditionata:
-#[expresie for elem in iterabil if conditie]
-#Exp: sa se creeze o lista cu elementele pozitive ale unei liste date
-ls=[4,5,-1,7,3,-8,9]
-ls_pozitiv=[]
+# Comprehensiune conditionata:
+# [expresie for elem in iterabil if conditie]
+
+"""
+TODO Sa se creeze o lista cu elementele pozitive ale unei liste date
+"""
+
+"""
+My Solution:
+lista = [1, 9, -49, -9, 2, 3]
+lista_pozitive = [x for x in lista if x >= 0]
+print(lista, lista_pozitive, sep=" si ")
+"""
+
+ls = [4, 5, -1, 7, 3, -8, 9]
+ls_pozitiv = []
 for x in ls:
-    if x>0:
+    if x > 0:
         ls_pozitiv.append(x)
 print(ls_pozitiv)
+
+# V2 (comprehension)
 ls_pozitiv=[x for x in ls if x>0]
 print(ls_pozitiv)
 
-#exc: se dau doua liste reprezentand multimi
-#sa se creeze o noua lista cu intersectia celor doua multimi
-a=[3,1,5,7]
-b=[1,7,2,9,11]
-c=[x for x in a if x in b]
+"""
+TODO Se dau doua liste reprezentand multimi. Sa se creeze o noua lista cu intersectia celor doua multimi
+"""
+
+a = [3,1,5,7]
+b = [1,7,2,9,11]
+c = [x for x in a if x in b]
 print(c)
 
-##se da un cuvant, sa se stearga vocalele din cuvant => un nou cuvant
-s="programarea"
-ls=[lit for lit in s if lit.lower() not in "aeiou"]
+"""
+TODO Se da un cuvant, sa se stearga vocalele din cuvant => un nou cuvant
+"""
+
+"""
+My Solution:
+cuvant = "programarea"
+cuvant_fara_vocale = "".join([litera for litera in cuvant if not(litera() in ['a', 'e', 'i', 'o', 'u'])])
+print(cuvant_fara_vocale)
+"""
+
+s = "programarea"
+ls = [lit for lit in s if lit.lower() not in "aeiou"]
 print(ls)
-s_consoane="".join(ls)
+s_consoane = "".join(ls)
 print(s_consoane)
 """
     for x in "aeiou"
-        s=s.replace(x,"")
+        s = s.replace(x,"")
 """
 
-#in comprehensiune expresie poate contine si operatorul if... else (?:)
-#exp: Data o lista, sa se creeze o noua lista in care elementele negative
-#din lista initiala sunt inlocuite cu 0
-ls=[8,1,-5,7,-2,-3]
-ls2=[x if x>0 else 0 for x in ls]
+# In comprehensiune expresia poate contine si operatorul if ... else (?:)
+
+"""
+TODO Data o lista, sa se creeze o noua lista in care elementele negative din lista initiala sunt inlocuite cu 0
+"""
+
+ls = [8, 1, -5, 7, -2, -3]
+ls2 = [x if x > 0 else 0 for x in ls]
 print(ls2)
 
-#for in for
-ls_perechi=[(x,y) for x in range(1,7) for y in range(1,7) if x%2==0 and y%2==0]
+# for in for
+ls_perechi = [(x,y) for x in range(1,7) for y in range(1,7) if x % 2 == 0 and y % 2 == 0]
 print(ls_perechi)
 
-#EXp - cifrul lui Cezar pt k=1 si litere mici
-s="abz" #=>bca
-s_cezar="".join([chr(ord(lit)+1) if lit<'z' else 'a' for lit in s])
+"""
+TODO: Cifrul lui Cezar pt k = 1 si litere mici
+"""
+
+s = "abz" # => "bca"
+s_cezar = "".join([chr(ord(litera) + 1) if litera < 'z' else 'a' for litera in s])
 print(s_cezar)
+
 """
 lit="c"
 if lit<'z':
@@ -301,295 +394,361 @@ else:
     lit='a'
 """
 
-# In continuare, curs3_liste_modificare
 """
+In continuare, curs3_liste_modificare
 append(element) -> adaugarea elementului la final
-extend(iterabil) -> adauga elementele din iterabil unul cate unul
-    la finalul listei
+extend(iterabil) -> adauga elementele din iterabil unul cate unul la finalul listei
 """
-ls=[3,4]
-ls.append(5)
-print(ls)
-ls.extend([7,8,9])
-print(ls)
-ls.append("abc")
-print(ls)
-ls.extend("abc")
-print(ls)
 
-#Modifcarea listei - cu felieri
+ls = [3, 4]
+ls.append(5)
+print(ls) # 3, 4, 5
+
+ls.extend([7, 8, 9])
+print(ls) # 3, 4, 5, 7, 8, 9
+
+ls.append("abc")
+print(ls) # 3, 4, 5, 7, 8, 9, 'abc'
+
+ls.extend("abc")
+print(ls) # 3, 4, 5, 7, 8, 9, 'abc', 'a', 'b', 'c'
+
+# Modifcarea listei - cu felieri
+
 """
 ls[i]=x
-ls[i:j]=iterabil (care nu are neaparat aceeasi lungime cu secv ls[i:j]
-ls[i:j:k]=iterabil (de aceeasi lungime)
+ls[i:j] = iterabil (care nu are neaparat aceeasi lungime cu secv ls[i:j]
+ls[i:j:k] = iterabil (de aceeasi lungime)
 """
-ls=[1,2,3,4]
-ls[1:3]=[5]
-print(ls)
-ls=[1,2,3,4,5,6]
-ls2=[11,12,13,14,15,16]
-ls[::2]=ls2[::2]
-print(ls)
-#adaugarea unui element x in lista pe pozitia i
-#insert(i,element)
-ls=[6,8,9]
-ls.insert(1,7)
-print(ls)
-ls[1:2]=[17] #inlocuirea ui ls[1]
-print(ls)
-ls[1:1]=[18] #inserare pe pozitia 1
-print(ls)
-#del ls[i:j]
-#del ls[i]
-#metode: pop(pozitie), insert(poz,element)
-#liste - remove(x) - elimina doar prima aparitie a lui x din lista
-ls=[1,2,3,4]
-ls[2]=[]
-print(ls)
-ls[2:3]=[]
-print(ls)
+
+ls = [1, 2, 3, 4]
+ls[1:3] = [5]
+print(ls) # 1 5 4
+
+ls = [1, 2, 3, 4, 5, 6]
+ls2 = [11, 12, 13, 14, 15, 16]
+ls[::2] = ls2[::2]
+print(ls) # 11, 2, 13, 4, 15, 6
+
+# adaugarea unui element x in lista pe pozitia i
+# insert(i, element)
+
+ls = [6, 8, 9]
+ls.insert(1, 7) 
+print(ls) # 6, 7, 8, 9
+
+ls[1:2] = [17] #inlocuirea lui ls[1]
+print(ls) # 6, 17, 8, 9
+
+ls[1:1] = [18] #inserare pe pozitia 1
+print(ls) # 6, 17, 18, 8, 9
+
+# del ls[i:j]
+# del ls[i]
+# metode: pop(pozitie), insert(poz, element)
+# liste - remove(x) - elimina doar prima aparitie a lui x din lista
+
+ls = [1, 2, 3, 4]
+ls[2] = []
+print(ls) # 1, 2, [], 4
+
+ls[2:3] = []
+print(ls) # 1, 2, 4
+
 del ls[2]
-print(ls)
+print(ls) # 1, 2
 
-ls=ls+[4] #NU
-#copiere
-l=[7,8]
-l1=l #nume pentru aceeasi lista
-l1[0]=9
-print(l1,l)
-l1=l.copy()
-l1[0]=11
-print(l1,l)
-m=[[1,2],[4,5]]
-m1=m.copy() #copiere superficiala -doar de referinta
-m1[0][0]=13
-print(m1)
-print(m)
+ls = ls + [4] # NU
 
-# In continuare, curs3_siruri_completare
+# copiere
 
-#SIRURI - continuare
-#split - are si parametrul maxsplit = cate imparitire sa faca maxim
-p="acesta este un exemplu"
-lp=p.split(" ")
-print(lp)
-lp=p.split(" ",maxsplit=1)
-print(lp)
+l = [7, 8]
+l1 = l # nume pentru aceeasi lista
+l1[0] = 9
+print(l1, l) # [9, 8] [9, 8] (i.e. se modifica si l1 si l)
+
+l1 = l.copy()
+l1[0] = 11
+print(l1, l) # [11, 8] [9, 8] (9, 8 la final pt ca am modificat deja l)
+
+m = [[1, 2], [4, 5]]
+m1 = m.copy() # copiere superficiala - doar de referinta
+m1[0][0] = 13
+print(m1) # [13, 2], [4, 5]
+print(m) # [13, 2], [4, 5] (i.e. se modifica si m1 si m)
+
+# SIRURI - continuare (curs3_siruri_completare)
+# split - are si parametrul maxsplit = cate imparitiri sa faca maxim
+p = "acesta este un exemplu"
+lp = p.split(" ")
+print(lp) # ['acesta', 'este', 'un', 'exemplu']
+
+lp = p.split(" ", maxsplit = 1)
+print(lp) # ['acesta', 'este un exemplu']
 #rsplit
 
-#exemplu - pe o line de forma nume varsta. Sa se afiseze varsta e o linie, numele pe alta
-p="Marinescu Ghemeci Ruxandra  36"
-lp=p.rsplit(maxsplit=1)
+"""
+TODO Avem o lista cu numele complet (pot fi doua prenume) si varsta. Sa se afiseze varsta pe o linie, numele pe alta
+"""
+
+p = "Marinescu Ghemeci Ruxandra  36"
+lp = p.rsplit(maxsplit = 1)
 print(lp)
 print(int(lp[1]))
 print(lp[0])
 
-#exemplu coordonatele carteziebne si eticheta
-p="3 7 acesta este un punct in plan"
-ls=p.split(maxsplit=2)
-x=int(ls[0])
-y=int(ls[1])
-eticheta=ls[2]
+"""
+TODO Coordonatele carteziene si eticheta
+"""
+
+p = "3 7 acesta este un punct in plan"
+ls = p.split(maxsplit = 2)
+x = int(ls[0])
+y = int(ls[1])
+eticheta = ls[2]
 print(f"({x},{y}) are \"eticheta {eticheta}\"")
 print(f'({x},{y}) are "eticheta {eticheta}" ')
 
-#ord, chr
-#caractere UNICODE
-#Modificari -> obiect nou
+# ord, chr
+# caractere UNICODE
+# Modificari -> obiect nou
 
-#s=s.replace(sect,sect_noua,cate_aparitii) - v. laborator
-s="un exemplu"
-s1=s.replace("u","")
-print(s1)
-s2=s.replace("u","",1)
-print(s2)
-x="am mancat"
-y="am "+"mancat"
-print(x,y,id(x),id(y))
-z=input()
-w="am "+z
-print(x,w,id(x),id(w))
-x=w
-print(x,w,id(x),id(w))
+# s = s.replace(sect, sect_noua, cate_aparitii) - v. laborator
+s = "un exemplu"
+s1 = s.replace("u", "")
+print(s1) # n exempl
+
+s2 = s.replace("u", "", 1)
+print(s2) # n exemplu
+
+x = "am mancat"
+y = "am " + "mancat"
+print(x, y, id(x), id(y)) # aceleasi adrese de memorie
+
+z = input()
+w = "am " + z
+print(x, w, id(x), id(w)) # adrese de memorie diferite chiar daca introducem 'mancat'
+
+x = w
+print(x, w, id(x), id(w)) # aceleasi adrese de memorie
 
 ########################
 # C4 Matrice init cu 0 #
 ########################
 
-#initializam o matrice de 0 de dimnesniuni n,m
-print("var 1 - gresit")
-n,m=2,3
-a=[[0]*m]*n
-print(a)
-a[0][0]=1
-print(a)
-print("var 2 - corect")
-a=[[0 for i in range(m)] for j in range(n)]
-print(a)
-a[0][0]=1
-print(a)
-print("var 3 - gresit")
-a=[[0 for i in range(m)]]*n
-print(a)
-a[0][0]=1
-print(a)
-print("var 4")
-a=[[0]*m for j in range(n)]
-print(a)
-a[0][0]=1
-print(a)
-#rec- var 2
-#operatorii <,<=,==, != - element cu element
-ls=[1,2,4]
-ls2=[3,1]
-print(ls<ls2) #!!compar element cu element, deci ls2 e mai mare
-#deoarece ls2[0]>ls[0]
-print([1,3]==[3,1]) #fals
+"""
+TODO Initializam o matrice de 0 de dimnesniuni n, m
+"""
 
-#sort vs sorted
-ls=[7,1,5]
-ls_sort=sorted(ls) #returneaza o noua lista
-print(ls_sort,ls) #ls nu se modifica
-ls.sort(reverse=True) #!!!nu retunreaza, modifca ls
+print("var 1 - gresit")
+n, m = 2, 3  
+a = [[0] * m] * n
+print(a) # [[0, 0, 0], [0, 0, 0]]
+# check
+a[0][0] = 1
+print(a) # [[1, 0, 0], [1, 0, 0]]
+
+print("var 2 - corect")
+a = [[0 for i in range(m)] for j in range(n)]
+print(a) # [[0, 0, 0], [0, 0, 0]]
+# check
+a[0][0] = 1
+print(a) # [[1, 0, 0], [0, 0, 0]]
+
+print("var 3 - gresit")
+a = [[0 for i in range(m)]]*n
+print(a) # [[0, 0, 0], [0, 0, 0]]
+# check
+a[0][0] = 1
+print(a) # [[1, 0, 0], [1, 0, 0]]
+
+print("var 4 - corect")
+a = [[0]*m for j in range(n)]
+print(a) # [[0, 0, 0], [0, 0, 0]]
+a[0][0] = 1
+print(a) # [[1, 0, 0], [0, 0, 0]]
+
+# rec - var 2
+
+# operatorii <, <=, ==, != - element cu element
+ls = [1, 2, 4]
+ls2 = [3, 1]
+print(ls < ls2) #!! compar element cu element, deci ls2 e mai mare
+# deoarece ls2[0]>ls[0]
+
+print([1, 3] == [3, 1]) # false
+
+# sort vs sorted
+ls = [7,1,5]
+ls_sort = sorted(ls) # returneaza o noua lista
+print(ls_sort, ls) # ls nu se modifica
+ls.sort(reverse=True) #!!!nu returneaza, modifca ls
 print(ls)
-m=[[6,9],[3,1],[1,11]]
-m.sort()
-"""(elemente sunt liste corespunzatoare liniilor)
-sunt comparate aceste liste => crescator dupa prima coloana 
-prin interschimbare de linii"""
-print(m)
+
+m = [[6, 9],[3, 1],[1, 11]]
+m.sort() # (elemente sunt liste corespunzatoare liniilor) sunt comparate aceste liste => crescator dupa prima coloana prin interschimbare de linii
+print(m) # [[1, 11], [3, 1], [6, 9]]
+
 ##############
 # C4 Tupluri #
 ##############
 
-#tuplu - clasa tuple
-#"lista imutabila"
-t=(6,4,8)
-print(t,type(t))
-#t[0]=13 #eroare does not support item assignment
-#nu putem modifica ce refera t[0]
-t=([8,5],[9,11])
-#pputem modifica valoarea obiectlui referit de t[0]
-t[0][0]=123
-print(t)
+# tuplu - clasa tuple
+# "lista imutabila"
 
-#parantezele pot lipsi
-t=5,6
-print(t,type(t))
-x,y=1,2
-x,y=y,x
-t=()
-t=(2) #nu este tuplu
-print(t,type(t))
-t=(2,) #tuplu cu un element
-print(t,type(t))
-t=tuple('abc')
-print(t)
-t=tuple([2])
-print(t,type(t))
-#toate metode,  totii operatori - de la liste in afara celor care modifica ob
-#in, count,len, idex, feliere
-#!!NU comprehensiune
-t=[i*i for i in range(1,10)] #list
-print(t,type(t))
-print(sum(t))
-print(sum(t))
-t=(i*i for i in range(1,10)) #nu e tuple
-print(t, type(t)) #este generator
-#genereaza "la crere" elemente dupa regula din copmprehsion
-print(next(t))
-print(next(t))
-print(sum(t))
-print(sum(t)) #!!0
+t = (6, 4, 8)
+print(t, type(t))
+
+# t[0] = 13 # eroare does not support item assignment
+# nu putem modifica ce refera t[0]
+t = ([8, 5],[9, 11])
+# putem modifica valoarea obiectlui referit de t[0]
+t[0][0]=123
+print(t) # ([123, 5], [9, 11])
+
+# parantezele pot lipsi
+t = 5, 6
+print(t, type(t))
+
+x, y = 1, 2
+x, y = y, x
+
+t = ()
+t = (2) # nu este tuplu
+print(t,type(t)) # int
+
+t=(2,) # tuplu cu un element
+print(t,type(t)) # tuple
+
+t = tuple('abc')
+print(t) # ('a', 'b', 'c')
+
+t = tuple([2])
+print(t, type(t)) # (2,) <class 'tuple'>
+
+# toate metode,  totii operatori - de la liste in afara celor care modifica ob
+# in, count, len, index, feliere
+# !! NU comprehensiune
+
+t = [i*i for i in range(1, 10)] 
+print(t, type(t)) # list
+print(sum(t)) # 285
+print(sum(t)) # 285
+
+t = (i*i for i in range(1,10))
+print(t, type(t)) # nu e tuple, este generator i.e. genereaza "la crere" elemente dupa regula din copmprehsion
+print(next(t)) # 1 i.e al primul element din tuplu
+print(next(t)) # 4 i.e al doilea element din tuplu
+print(next(t)) # 9 i.e al treilea element din tuplu
+print(sum(t)) # 280
+print(sum(t)) # 0
 
 ################
 # C4 Frecvente #
 ################
 
 """
-Exp -> se citeste un sir de cifre
-sa se afiseze frecventa fiecarei cifre in sir
+TODO Se citeste un sir de cifre. Sa se afiseze frecventa fiecarei cifre in sir.
 """
+
 """
-v=[int(x) for x in input("dati sirul ").split()]
-fr=[0]*10
+My Solution:
+cifre = (4, 5, 3, 2, 3, 4, 3, 2, 4, 1)
+frecventa = [0] * 10
+for cifra in cifre:
+    frecventa[cifra] += 1
+for i in range(10):
+    if frecventa[i]:
+        print(f"{i} apare de {frecventa[i]} ori.")
+"""
+
+v = [int(x) for x in input("dati sirul ").split()]
+fr = [0]*10
 for x in v:
-    fr[x]+=1
+    fr[x] += 1
 for i in range(10):
     if fr[i]!=0:
-        print(i,fr[i])
+        print(i, fr[i])
+
 """
-"""
-Exp -> se citeste o propozitie cu cuv separate prin spatiu 
-sa se afiseze frecventa fiecarui cucvant din propozitie
-un exemplu un alt exemplu
+TODO Se citeste o propozitie cu cuvinte separate prin spatiu. Sa se afiseze frecventa fiecarui cuvant din propozitie. 
+in:
+Un exemplu un alt exemplu
+out:
 un 2
 alt 1
 exemplu 2
 """
-#struct de date indexate dupa alt tip de cheie
 
+# struct de date indexate dupa alt tip de cheie
 
-d={} #frecv - alta structura - dictionar
-p="un exemplu un alt exemplu"
+d = {} # frecv - alta structura - dictionar
+p = "un exemplu un alt exemplu"
 for cuv in p.split():
     if cuv in d:
         d[cuv]+=1
     else:
         d[cuv]=1
 for cuv in d:
-    #if d[cuv]!=0: - nu este necesar
+    # if d[cuv]!=0: # nu este necesar
     print(cuv,d[cuv])
 """
-Solutie de o(n^2) un de n=nr de cuvinte"""
-l=p.split()
-l_dist=set(l)
-print(l_dist)
+Solutie de O(n^2) unde n = nr de cuvinte
+"""
+
+l = p.split()
+l_dist = set(l)
+print(l_dist) # {'exemplu', 'un', 'alt'} ordine random
 #l1=[(l[i],l.count(l[i])) for i in range(len(l)) if l.count(l[i])>0] - se repeta cuv
-l1=[(cuv,l.count(cuv)) for cuv in l_dist ]
-print(l1)
+l1 = [(cuv, l.count(cuv)) for cuv in l_dist ]
+print(l1) # [('exemplu', 2), ('un', 2), ('alt', 1)]
 
 #########################
 # C4 Multimi dictionare #
 #########################
 
-#Alte tipuri de colectii in Python
+# Alte tipuri de colectii in Python
 """
-Multmi, dictionare - sunt mmem cu tabele de dispersie
-(tabele"de frcventa" indexate"" dupa chei care au asociate o valoare numerica (hash code)
+Multimi, dictionare - sunt mmem cu tabele de dispersie
+(tabele "de frecventa" indexate"" dupa chei care au asociate o valoare numerica (hash code)
 Hash code depinde de valoarea obiectui => cheile pot fi doar de tipuri imutabile
 (Care nu isi pot schimba valoarea))
 """
-#cheie -> hash -> index in tabel
-#t[index] - informatii despre toate cheile care au acelasi index
+# cheie -> hash -> index in tabel
+# t[index] - informatii despre toate cheile care au acelasi index
 """
 ob cu aceeasi valoare => acelasi hash
 ob cu valori difertite - poate avea acelasi hash (coliziuni)
 Obs: Cautarea si stergrea in astfel de struct O(1) mediu (!!coliziuni)
 """
 
-#MULTIMI
+# MULTIMI
 """
 Colectii de ob cu valori diferite
 Nu sunt indexate de la 0 !!!!
-elemntele din multime - tb sa fie imutabile+ sa aiba hash code
+elementele din multime - trebe sa fie imutabile + sa aiba hash code
 """
-s={6,1,3,1}
-print(s) #ordine ain s- nu este garantata a fi cea de la adaugare/creare}
-cuv="alfabet"
-#multimea literelor din cuv
-s=set(cuv)
+
+s = {6, 1, 3, 1}
+print(s) # ordinea in s - nu este garantata a fi cea de la adaugare/creare}
+
+cuv = "alfabet"
+# multimea literelor din cuv
+s = set(cuv)
 print(s)
-#s={[3,4],[5,6]} #unhashable type: 'list'
+
+# s = {[3, 4], [5, 6]} # TypeError: unhashable type: 'list'
 print(hash(cuv))
 
-#operatii , incluziune
-#op relationali - testeaza incluziunea < (stict inclus), <=
-s1={3,1,5}
-s2={1,5}
-print(s2<s1) #s2 est inclus in s1 => adev
-#op cu multimi - si operatori si metode
+# operatii , incluziune
+# op relationali - testeaza incluziunea < (stict inclus), <=
+s1 = {3, 1, 5}
+s2 = {1, 5}
+print(s2 < s1) # s2 est inclus in s1 => adev
+
+# op cu multimi - si operatori si metode
 # (care modifica ob/returneaza rezultatul)
+
 """
 reuniune:
 operatorul |
@@ -597,320 +756,385 @@ metoda care returneaza mult obtinuta dupa reuniune: union
 metoda care modifica ob: update
 intersectie: & , intersection, intersection_update
 """
-s1={4,5,6}
-s2={6,7}
-s3={5,11}
-r=s1|s2|s3 #se pot inlantui
-print(r)
-r=s1.union(s2,s3,[7,34,78]) #metode- param pot sa fie si de alt tip decat set
-print(r)
-r.intersection_update({5,6,11,110}) #modifica r
-print(r)
-#multimea vida
-#s={}#nu- dictionar
-s=set()
-#len, sorted,min, max
-#NU s[i]
 
-s={{1,3},{2,4,5}}
-#set se poate modifica - add, remove, discard de un element
-#->nu exista set de set-uri
-#exista tipul de date frozenset
+s1 = {4, 5, 6}
+s2 = {6, 7}
+s3 = {5, 11}
+r = s1 | s2 | s3 # se pot inlantui
+print(r)
+
+r = s1.union(s2, s3, [7, 34, 78]) # metode - param pot sa fie si de alt tip decat set
+print(r)
+
+r.intersection_update({5, 6, 11, 110}) #modifica r
+print(r)
+
+# multimea vida
+# s = {} # dictionar
+s = set() # set
+
+# Putem folosi len, sorted, min, max, insa NU putem avea s[i]
+
+s = {{1, 3}, {2,4,5}} # TypeError: unhashable type: 'set'
+s = [{1, 3}, {2,4,5}] # e oke
+s = ({1, 3}, {2,4,5}) # e oke
+
+# set se poate modifica - add, remove, discard de un element
+# -> nu exista set de set-uri
+# exista tipul de date frozenset
 
 #######################
 # C4 Liste completare #
 #######################
 
-#COPIERE
-#copiere
-l=[7,8]
-l1=l #nume pentru aceeasi lista
-l1[0]=9
-print(l1,l)
-l1=l.copy()
-l1[0]=11
-print(l1,l)
-m=[[1,2],[4,5]]
-m1=m.copy() #copiere superficiala -doar de referinta
-m1[0][0]=13
-print(m1)
-print(m)
-import copy
-m2=copy.deepcopy(m)
-m[0][0]=100
-print(m)
-print(m2)
+# COPIERE
+# copiere
 
-#EXP - citrea unei matrice cu elementele de pe o linie date
-#separate cu spatiu; dimenisiunile matricei - date separate
-# cu spatiu pe olinie
+l = [7, 8]
+l1 = l # nume pentru aceeasi lista
+l1[0] = 9
+print(l1,l) # se modifica si l si l1
+
+l1 = l.copy()
+l1[0] = 11
+print(l1, l)
+
+m = [[1, 2], [4, 5]]
+m1 = m.copy() # copiere superficiala - doar de referinta
+m1[0][0] = 13
+print(m1) # [[13, 2], [4, 5]]
+print(m) # [[13, 2], [4, 5]]
+
+import copy
+m2 = copy.deepcopy(m)
+m[0][0] = 100
+print(m) # [[100, 2], [4, 5]]
+print(m2) # [[1, 2], [4, 5]]
+
 """
+TODO Citrea unei matrice cu elementele de pe o linie date separate cu spatiu; dimenisiunile matricei - date separate cu spatiu pe o linie
+De exemplu:
 2 3
 1 4 6
 3 67 10
 """
-#Matrice -lista de liste
-#un element al listei - o linie
-n,m=[int(x) for x in input("dati dimensiunile ").split()]
+
+# Matrice - lista de liste
+# un element al listei - o linie
+n, m = [int(x) for x in input("dati dimensiunile ").split()]
 """
-a=[]
+a = []
 for i in range(n):
-    linie=[int(x) for x in input().split()]
+    linie = [int(x) for x in input().split()]
     a.append(linie)
 """
-#citirea matrice - cu comprehension
-a=[[int(x) for x in input().split()] for i in range(n)]
+# citirea matrice - cu comprehension
+a = [[int(x) for x in input().split()] for i in range(n)]
 
 print(a)
 for linie in a:
     for x in linie:
         print(x, end=" ")
     print()
-#stil c++
+# stil c++
 for i in range(len(a)):
     for j in range(len(a[i])):
-        print(a[i][j],end=" ")
+        print(a[i][j], end=" ")
     print()
-#inint cu 0 -in alt fisier
+# inint cu 0 - in alt fisier
 
 ##################
-# C5 Dict puncte #
+# C5 Dict puncte # 
 ##################
 
 """
-Se dau informatii de despre puncte in plan
-x y eticheta
-(in fisierul puncte.in)
+TODO Se dau informatii de despre puncte in plan
+x y eticheta (in fisierul puncte.in)
 a) Sa se memoreze punctele cu etichete intr-un dictionar
 b) se citesc coordonatele unui punct, sa se afiseze eticheta acestuia
 c) se citesc coordonatele unui punct, sa se stearga informatiile asociate lui
 """
-#a)var 1- se pastreaza ca eticheta pentru un punct ultima eticheta
-# (cea mai recenta)
-f=open("puncte.in") #pt citire - implicit
-d={}
-for linie in f: #f este colectie de linii
-    x,y,eticheta=linie.split(maxsplit=2)
-    x=int(x)
-    y=int(y)
-    #eticheta=eticheta.strip("\n")  #elimina \n de la capetele sirului pana gaseste alt caracter
-    #p=[x,y] #TypeError: unhashable type: 'list'
-    p=(x,y)
 
-    if p not in d: #doar pt var 2
-        d[p]=eticheta.strip("\n")
-    d.setdefault(p,eticheta) #doar pt var 2
+# a) var 1 - se pastreaza ca eticheta pentru un punct ultima eticheta
+# (cea mai recenta)
+
+f = open("puncte.in") # pt citire - implicit
+d = {}
+for linie in f: # f este colectie de linii
+    x, y, eticheta = linie.split(maxsplit = 2)
+    x = int(x)
+    y = int(y)
+    # eticheta = eticheta.strip("\n")  # elimina \n de la capetele sirului pana gaseste alt caracter
+    # p = [x, y] # TypeError: unhashable type: 'list'
+    p = (x,y)
+
+    if p not in d: # doar pt var 2
+        d[p] = eticheta.strip("\n")
+    d.setdefault(p, eticheta) # doar pt var 2
 f.close()
 print(d)
-#b)
-#p=(int(x) for x in input().split()) #nu este tuplu
-a,b=(int(x) for x in input().split())
-t=(a,b)
-if t in d: #cauta t in cheile lui d
+
+# b)
+# p = (int(x) for x in input().split()) # nu este tuplu
+a, b = (int(x) for x in input().split())
+t = (a, b)
+if t in d: # cauta t in cheile lui d
     print(d[t])
 else:
-    print("nu exista punctul ",t)
-#alternativ, fara if- puteam folosi get
-print(d.get(t,"nu exista"))
+    print("nu exista punctul ", t)
+# alternativ, fara if - puteam folosi get
+print(d.get(t, "nu exista"))
 
 
-#stergere
+# stergere
 if t in d:
     del d[t]
 print(f"am sters {d.pop(t," nimic ")}")
 
-#var 2 la citire - sa pastreze prima eticheta (alte etichete ale aceluiasi punct- ignora)
+# var 2 la citire - sa pastreze prima eticheta (alte etichete ale aceluiasi punct - ignora)
 
 ##############################
 # C5 Puncte toate etichetele #
 ##############################
 
 """
-Se dau informatii de despre puncte in plan
+TODO Se dau informatii de despre puncte in plan
 x y eticheta
 (in fisierul puncte.in)
 a) Sa se memoreze punctele cu etichete intr-un dictionar
 b) se citesc coordonatele unui punct, sa se afiseze eticheta acestuia
 c) se citesc coordonatele unui punct, sa se stearga informatiile asociate lui
 """
-#a)var 3- se pastreaza ca eticheta toate etichetele
-# (cea mai recenta)
-f=open("puncte.in") #pt citire - implicit
-d={}
-for linie in f: #f este colectie de linii
-    x,y,eticheta=linie.split(maxsplit=2)
-    x=int(x)
-    y=int(y)
-    eticheta=eticheta.strip("\n")  #elimina \n de la capetele sirului pana gaseste alt caracter
-    #p=[x,y] #TypeError: unhashable type: 'list'
-    p=(x,y)
 
-    if p not in d: #doar pt var 2
-        d[p]=[eticheta] #!!!lista cu o eticheta
+# a) var 3 - se pastreaza ca eticheta toate etichetele
+# (cea mai recenta)
+
+f = open("puncte.in") # pt citire - implicit
+d = {}
+for linie in f: # f este colectie de linii
+    x, y, eticheta = linie.split(maxsplit = 2)
+    x = int(x)
+    y = int(y)
+    eticheta = eticheta.strip("\n")  # elimina \n de la capetele sirului pana gaseste alt caracter
+    # p = [x, y] # TypeError: unhashable type: 'list'
+    p = (x, y)
+
+    if p not in d: # doar pt var 2
+        d[p] = [eticheta] #!!!lista cu o eticheta
     else:
         d[p].append(eticheta)
     """
-    if p not in d: #doar pt var 2
-        d[p]=[] #!!!lista 
+    if p not in d: # doar pt var 2
+        d[p] = [] #!!!lista 
     d[p].append(eticheta)
     """
 f.close()
 print(d)
+
 #b)
 #p=(int(x) for x in input().split()) #nu este tuplu
-a,b=(int(x) for x in input().split())
-t=(a,b)
-if t in d: #cauta t in cheile lui d
+
+a, b = (int(x) for x in input().split())
+t = (a,b)
+if t in d: # cauta t in cheile lui d
     print(d[t])
 else:
-    print("nu exista punctul ",t)
-#alternativ, fara if- puteam folosi get
-print(d.get(t,"nu exista"))
-
+    print("nu exista punctul ", t)
+# alternativ, fara if - puteam folosi get
+print(d.get(t, "nu exista"))
 
 #stergere
 if t in d:
     del d[t]
 print(f"am sters {d.pop(t," nimic ")}")
 
-#var 2 la citire - sa pastreze prima eticheta (alte etichete ale aceluiasi punct- ignora)
+# var 2 la citire - sa pastreze prima eticheta (alte etichete ale aceluiasi punct - ignora)
 
 ############################
 # C5 Dictionare parcurgere #
 ############################
 
-d1={"unu":6,"doi":3,"trei":4}
-d2={"unu":5,"doi":7,"patru":3}
-print(d1.keys())
-print(d1.values())
-print(d1.items())
-#implicit - parcurse cheile
+d1 = {"unu": 6, "doi": 3, "trei": 4}
+d2 = {"unu": 5, "doi": 7, "patru": 3}
+print(d1.keys()) # ['unu', 'doi', 'trei']
+print(d1.values()) # [6, 3, 4]
+print(d1.items()) # [('unu', 6), ('doi', 3), ('trei', 4)]
+
+# implicit - parcurse cheile
 for x in d1:
-    print(x,d1[x])
-print(sorted(d1))
+    print(x, d1[x]) # 'unu', 6, ...
+print(sorted(d1)) # ['doi', 'trei', 'unu']
+
 #d.keys()- operatori cu multimi &,|
-#Exp d1, d2- dictionare cu frecv cuv in 2 fisiere
-#sa se afiseze cuv din cel doua fisiere reunie cu frecv lor
-# sa se afiseze cuv din intersectie cu frec lor
-d1={"unu":6,"doi":3,"trei":4}
-d2={"unu":5,"doi":7,"patru":3}
-d_reunit={k:d1.get(k,0)+d2.get(k,0)  for k in d1.keys()|d2.keys()}
-#d_reunit={k:d1[k]+d2[k]  for k in d1.keys()|d2.keys()}
+
+"""
+TODO Fie d1, d2 - dictionare cu frecv cuv in 2 fisiere
+a. Sa se afiseze cuv din cele doua fisiere reunite cu frecv lor
+b. Sa se afiseze cuv din intersectie cu frec lor
+"""
+
+d1 = {"unu": 6, "doi": 3, "trei": 4}
+d2 = {"unu": 5, "doi": 7, "patru": 3}
+
+d_reunit = {k:d1.get(k, 0) + d2.get(k, 0) for k in d1.keys() | d2.keys()}
+# d_reunit={k:d1[k]+d2[k]  for k in d1.keys()|d2.keys()}
 print(d_reunit)
+
 d_intersect={k:min(d1[k],d2[k]) for k in d1.keys()&d2.keys()}
 print(d_intersect)
+
+# print(d1.keys() | d2.keys()) # {'trei', 'unu', 'doi', 'patru'}
+# print(d1.keys() & d2.keys()) # {'doi', 'unu'}
 
 ##############
 # C5 Functii #
 ##############
 
-def f(x,y): #antet, x,y- param formali
-    if x>y:
-        return x-y, x*y #putem returna mai multe valori => tuplu
+def f(x, y): # antet, x, y - param formali
+    if x > y:
+        return x - y, x * y # putem returna mai multe valori => tuplu
     else:
-        return y-x, x*y
-    #daca nu returneaza explicit val, implicit returneaza None
+        return y - x, x * y
+    # daca nu returneaza explicit val, implicit returneaza None
 
-def afis(x,y):
-    print(x,y)
+def afis(x, y):
+    print(x, y)
 
-t=f(3,4)
-print(t,type(t))
-a,b= f(3,4)
-print(a,b)
-x=afis(a,b)
-print(x) #None
+t = f(3, 4)
+print(t, type(t)) # tuple
 
-v=[5,1,6]
-ls=sorted(v)
-print(ls)
-ls=v.sort()
-print(ls)
-v=v.sort() #!!!NU - v devine None
+a, b = f(3, 4)
+print(a, b) # 1 12
+
+x = afis(a, b)
+print(x) # None
+
+v = [5, 1, 6]
+ls = sorted(v)
+print(ls) # [1, 5, 6]
+
+ls = v.sort()
+print(ls) # None
+
+v = v.sort() #!!!NU - v devine None
 print(v)
 
-#transmiterea parametrilor - prin atribuire
-# (param formal= parm actual (param formal - vairabila locala)
+# transmiterea parametrilor - prin atribuire
+# (param formal = parm actual (param formal - variabila locala)
+
 def modifica(x):
-    x=x+1
-    print(x)
-    print(locals())
-a=8
+    x = x + 1
+    print(x) # 9
+    print(locals()) # {'x': 9}
+a = 8
 modifica(a)
-print(a)
+print(a) # 8
+
 """
-x=8
-modifica(x)
-print(x)
+x = 8
+modifica(x) # la fel, nu conteaza ca are aceeasi denumire, un x este global, altul este local 
+print(x) # 8
 """
 
 def modificare_lista(ls):
     ls.append(6)
-v=[7,8]
+v = [7, 8]
 modificare_lista(v)
-print(v)
+print(v) # [7, 8, 6]
+
 def creare(v):
-    v=[0]*10
-v=[]
+    v = [0] * 10
+v = []
 creare(v)
-print(v)
-#dupa exec fct se vad doar modificarile facute asupra
-# valorii unui param mutabil ("deja alocat")
+print(v) # [], NU [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+
+# dupa exec fct se vad doar modificarile facute asupra valorii unui param mutabil ("deja alocat")
 
 #################
 # C5 Dictionare #
 #################
 
-#dict -dictionar
+# dict - dictionar
+
 """
 memoreaza perechi cheie:valoare ai cautarea dupa cheie O(1) mediu
 (si stergerea cheii (impreuna cu valoarea asociata)
 """
-#Creare
-d={"un":2,"cuvant":1}
-print(d,type(d))
-d={} #!!!dictionar vid, nu set vid
-#Obs: cheia - imutabila + cu hash
-#valoarea poate fi de orice tip
-#pot fi chei in dict /elemente in set: str, tuple, frozenset
-#nu pot fi chei: list, set
 
-#se poate crea dict/set cu comprehensiune
-s="abcdab"
-d={lit:0 for lit in s}
+# Creare
+
+d = {"un": 2, "cuvant": 1}
+print(d,type(d)) # dict
+
+d = {} #!!!dictionar vid, nu set vid
+
+# Obs: cheia - imutabila + cu hash
+# valoarea poate fi de orice tip
+# pot fi chei in dict /elemente in set: str, tuple, frozenset
+# nu pot fi chei: list, set
+# se poate crea dict/set cu comprehensiune
+
+s = "abcdab"
+d = {lit: 0 for lit in s}
+print(d) # {'a': 0, 'b':0, ...}
+
+d = {lit: s.count(lit) for lit in s} # ineficient - o(n2) - v curs trecut
+print(d) # {'a': 2, 'b': 2, 'c': 1, 'd': 1}
+
+# si set se poate crea cu comprehensiune (completare la set)
+
+"""
+TODO Sa se determine multima cuvintelor cu cel putin k litere dintr-o propozite:
+"""
+
+"""
+My Solution (SyntaxError: invalid syntax)
+# Wait a minute, I did't understand the task even.
+d = {}
+propozitie = "Aceasta este o propozitie simpla."
+k = 3
+cuvinte = propozitie.split()
+d = {cuvant: nr_litere for (cuvant, nr_litere) in (cuvinte, cuvant.count(litera) for litera in cuvant)}
 print(d)
-d={lit:s.count(lit) for lit in s} #ineficient -o(n2) - v curs trecut
-print(d)
-#si set se poate crea cu comprehensiune (completare la set)
-#sa se determine multima cuvintelor cu cel putin k litere dintr-o propozite:
-prop="aceasta este o propozitie aceasta"
-k=5
-s={w for w in prop.split() if len(w)>=k}
+"""
+
+"""
+My Solution after viewing the following code
+propozitie = "Aceasta este o propozitie simpla."
+k = 3
+d = {cuvant for cuvant in propozitie.split() if len(cuvant) >= k}
+print(d, type(d)) # {'Aceasta', 'este', 'propozitie', 'simpla.'} <class 'set'>
+"""
+
+prop = "aceasta este o propozitie aceasta"
+k = 5
+s = {w for w in prop.split() if len(w) >= k}
 print(s)
 
-#accesarea unui element din dictionar - dupa cheie
-#d[cheie]- returneaza valoarea asociata cheii/KeyError daca nu exista cheia in dictionar
-d={"un":2,"cuvant":1}
-print(d["un"])
-#d.get(cheie,valoare_default)- daca nu gaseste cheia
-# returneaza valoare_default
-print(d.get("trei","nu exista"))
+# accesarea unui element din dictionar - dupa cheie
+# d[cheie] - returneaza valoarea asociata cheii sau KeyError daca nu exista cheia in dictionar
 
-#ACTUALIZARE
-#d[cheie]=valoare -> daca nu exista cheie in dict,se adauga cheie:valoare,
-#daca exista cheie - se modifica valoarea asociata
-d={"un":2,"cuvant":1}
-d["un"]=5
-d["unu"]=1
-print(d)
+d = {"un": 2, "cuvant": 1}
+print(d["un"]) # 2
 
-#d.setdefault(cheie,valoare) - adauga daca nu exista in dictionar cheie
-#perechea cheie:valoare
+# d.get(cheie, valoare_default) - daca nu gaseste cheia returneaza valoare_default
+print(d.get("trei", "nu exista")) # nu exista deoarece nu exista cheia 'trei'
 
-#stergerea unei cheii (a perechii cheie:valoare
-#del d[cheie]
-#d.pop(cheie,valoare_default)
-#d.clear()
+# ACTUALIZARE
+# d[cheie] = valoare
+# daca nu exista cheie in dict, se adauga cheie: valoare
+# daca exista cheie, se modifica valoarea asociata
+
+d = {"un": 2, "cuvant": 1}
+d["un"] = 5
+d["unu"] = 1
+print(d) # {'un': 5, 'cuvant': 1, 'unu': 1}
+
+# d.setdefault(cheie, valoare) - adauga perechea cheie:valoare daca nu exista in dictionar cheie
+# stergerea unei chei (a perechii cheie:valoare
+# del d[cheie]
+# d.pop(cheie, valoare_default)
+# d.clear()
 
 ####################
 # C6 Functii part1 #
@@ -918,31 +1142,32 @@ print(d)
 
 """
 Tipuri de paramterii
-"""
-
-"""
-1. Param obligatorii - trebuie sa primeasca valaore la apel
-Se pot da
--prin pozitie (in ordinea in care sunt in antet 
--prin nume (nume_param_formal=)
+1. Param obligatorii - trebuie sa primeasca valoare la apel
+Se pot da:
+- prin pozitie (in ordinea in care sunt in antet 
+- prin nume (nume_param_formal=)
 - combinat - dar primii se dau cei prin pozitii
 """
-def f(x,y,z):
-    print(x,y,z)
-f(3,4,5)
-f(z=7,x=9,y=8) #prin nume-in orice ordine
-f(3,z=89,y=2)
+
+def f(x, y, z):
+    print(x, y, z)
+f(3, 4, 5) # 3, 4, 5
+f(z = 7, x = 9, y = 8) # 9, 8, 7 # prin nume - in orice ordine
+f(3, z = 89, y = 2) # 3, 2, 89
 
 """
+Tipuri de paramterii
 2. Param cu valoare implcita - atribuita in antet
 Daca la apel nu ii coresp o valoare, este folosita cea implicita
 la final in antet
 """
-def f(x,y,z=9):
+
+def f(x, y, z = 9):
     print(x,y,z)
-f(7,8) #pentru z se foloseste valoare implicita
+f(7,8) # 7, 8, 9 # pentru z se foloseste valoarea implicita
 
 """
+Tipuri de paramterii
 3. Functii cu numar variabil de parametrii:
 - in antet unul dintre parametri este prefixat de *
 *parametru 
@@ -950,100 +1175,131 @@ f(7,8) #pentru z se foloseste valoare implicita
 
 def f(*numere):
     print(numere, type(numere))
-    l=list(numere)
+    l = list(numere)
     print(l, type(l))
-f(1,2)
-f(1,2,3)
-f(1,2,3,4)
+f(1, 2) # (1, 2) tuple [1, 2] <list>
+f(1, 2, 3) # sameish
+f(1, 2, 3, 4) # sameish
 
 #!!!parametrii de dupa cel cu * trebuie dati prin nume
 
-#exemplu - suma numerelor primite ca param, dintr-un interval dat
-def suma(*numere, lim_inf,lim_sup):
-    s=0
+"""
+# TODO Suma numerelor primite ca param, dintr-un interval dat
+"""
+
+"""
+My Solution
+def suma(*numere, capat_stang, capat_drept):
+    suma = 0
+    for numar in numere:
+        if capat_stang < numar < capat_drept:
+            suma += numar
+    return suma
+
+print(suma(1, 2, 3, 4, 5, 6, 7, capat_stang = 2, capat_drept = 5))
+"""
+
+def suma(*numere, lim_inf, lim_sup):
+    s = 0
     for nr in numere:
-        if lim_inf<=nr<=lim_sup:
-            s+=nr
-    s=sum(nr for nr in numere if lim_inf<=nr<=lim_sup)
-    return s
-
-s=suma(100,45,79,105, lim_inf=50, lim_sup=100) #cei de dupa- prin nume
-print(s)
-
-#parametrii de dupa * pot avea si valoare implicita
-def suma(*numere, lim_inf=0,lim_sup=100):
+        if lim_inf <= nr <= lim_sup:
+            s += nr
+    # Comprehension
     s = sum(nr for nr in numere if lim_inf <= nr <= lim_sup)
     return s
-s=suma(100,45,79,105, lim_sup=50) #lim_inf- s-a cons valoarea default
+
+s = suma(100, 45, 79, 105, lim_inf = 50, lim_sup = 100) # ce-i dupa numere - prin nume
 print(s)
 
-#putem transmite ca parametrii si functii
-#exp: suma generica suma(f(x) pentru numerele x primite ca param
-#si funtia f primita ca param
-def suma(*numere, f=int):
-    s=0
-    for nr in numere:
-        s+=f(nr)
+# parametrii de dupa * pot avea si valoare implicita
+def suma(*numere, lim_inf = 0, lim_sup = 100):
+    s = sum(nr for nr in numere if lim_inf <= nr <= lim_sup)
     return s
+s = suma(100, 45, 79, 105, lim_sup=50) # lim_inf - s-a cons valoarea default
+print(s)
+
+# putem transmite ca parametrii si functii
+
+"""
+TODO: Suma generica suma(f(x) pentru numerele x primite ca param si funtia f primita ca param
+"""
+
+import math
+
+def suma(*numere, f = int):
+    s = 0
+    for nr in numere:
+        s += f(nr)
+    return s
+
 def finvers(x):
     return 1/x
-import math
-r=suma(9,16,100, f=math.sqrt)
+
+r = suma(9, 16, 100, f = math.sqrt)
 print(r)
+
 r=suma(9,16,100, f=finvers)
 print(r)
-r=suma(9,16,100) #lipseste f la apel -implicit int
+
+r=suma(9,16,100) # lipseste f la apel - implicit functia este int
 print(r)
 
-#map(f,lista) -> f aplicat elementelor listei
-ls=["70",8,"90"]
-#v=[int(x) for x in ls]
+# map(f, lista) -> f aplicat elementelor listei
 
-v=map(int,ls) #aplica functia fiecarui element
-v=list(v)
+ls = ["70", 8, "90"]
+
+# v = [int(x) for x in ls]
+
+v = map(int, ls) # aplica functia fiecarui element
+v = list(v)
 print(v)
+
 """
 filter(criteriu,lista) -> 
 doar elementele din lista care verifica criteriul
 unde criteriu - functie care returneaza True/False
 """
-#Exp:
-ls=[8,12,7,9,10]
-#lista cu elementele pare
-lsp=[x for x in ls if x%2==0]
+
+ls = [8, 12, 7, 9, 10] # lista cu elementele pare
+
+# V1 Comprehension
+lsp = [x for x in ls if x % 2 == 0]
+
+# V2 Filter
 def f(x):
-    return x%2==0
-lsp=list(filter(f,ls))
+    return x % 2 == 0
+lsp = list(filter(f, ls))
 print(lsp)
 
-#sortari
-ls=["cuv","un","altul","doi","cinci","ab"]
-#sort lista de cuvinte crescator dupa lungime si in caz de egalitate
-#crescator lexicografic
-#OBS: sortarea din python este stabila =
-#doua elemente egale dupa sortare pastreaza ordinea din sirul initial
+# Sortari
 
-#Avem 2 criterii de sortare 1)llung, 2)lexicogr:
-#var1- folosim sort de 2 ori, pentru criteriile in ordine inversa:
-#sortam lexicografic !!sortare stabila
-ls.sort()
-#sortam dupa lungime
-ls.sort(key=len) #keycheia de sortare key(v[i])
+# Sorteaza lista de cuvinte crescator dupa lungime si in caz de egalitate crescator lexicografic
+# OBS: Sortarea din Python este stabila i.e. doua elemente egale dupa sortare pastreaza ordinea din sirul initial
+# Avem 2 criterii de sortare 1) llung, 2)lexicogr:
+# var1 - folosim sort de 2 ori, pentru criteriile in ordine inversa:
+# sortam lexicografic !!sortare stabila
+
+ls = ["cuv", "un", "altul", "doi", "cinci", "ab"]
+ls.sort() # sortam dupa lungime
 print(ls)
 
-#var 2
-ls=["cuv","un","altul","doi","cinci","ab"]
-def f(x): #elementele se compara dupa f(v[i])
-    #returnam un tuplu, fiecare element din tuplu corespunde unui criteriu
-    #primul elemnt din ltuplu - primul criteriu)
-    return len(x),x
-
-ls.sort(key=f)
+# V1
+ls = ["cuv", "un", "altul", "doi", "cinci", "ab"]
+ls.sort(key = len) # keycheia de sortare key(v[i])
 print(ls)
 
-#functii fara nume
-ls=["cuv","un","altul","doi","cinci","ab"]
-ls.sort(key= lambda x:(len(x),x)) #lambda x : cheie asociata lui x)
+# V2
+ls = ["cuv", "un", "altul", "doi", "cinci", "ab"]
+def f(x): # elementele se compara dupa f(v[i])
+    # returnam un tuplu, fiecare element din tuplu corespunde unui criteriu
+    # primul elemnt din ltuplu - primul criteriu)
+    return len(x), x
+ls.sort(key = f)
+print(ls)
+
+# V3 (Functii fara nume - Lambda functions)
+ls = ["cuv", "un", "altul", "doi", "cinci", "ab"]
+ls.sort(key = lambda x: (len(x), x)) # lambda x : cheie asociata lui x)
 print(ls)
 
 ####################
@@ -1053,12 +1309,14 @@ print(ls)
 """
 Recursivitate
 """
+
 def fact(n):
-    if n==0:
+    if n == 0:
         return 1
-    return n*fact(n-1)
+    return n * fact(n - 1)
 print(fact(50))
 print(fact(70))
+
 import sys
 sys.setrecursionlimit(2000)
 print(fact(1090))
@@ -1068,49 +1326,48 @@ print(fact(1090))
 ###############################
 
 """
-FUNCTII-continuare
+FUNCTII - continuare
+"Domeniul de vizibilitate pentru o variabila"
+La accesara valorii unei variabile - este cautata in spatiul local si apoi in cel global (cautata dupa regula LEGB - local, enclonsing, global, builtin)
 """
-#domeniul de vizibilitate pentru o variabila
 
-"""
-La accesara valorii unei variabile- este cautata is spatiul local 
-si apoi in global (cautata dupa regula LEGB - local, enclonsing, 
-global, builtin)
-"""
 def f():
-    #spatiul local
+    # spatiul local
     print(x)
 
-x=9 #spatiul global
-f()
+x = 9 # spatiul global
+f() # afiseaza 9 deoarece x nu exista in spatiul local dar exista in cel global
 
-#la actualizare:
 """
-o variabila incepe sa existe la prima atribuire
-(este creata in spatiul (domeniul) unde se face atribuirea,
-daca nu exista)
+La actualizare o variabila incepe sa existe la prima atribuire (este creata in spatiul (domeniul) unde se face atribuirea, daca nu exista)
 """
+
 def f():
-   y=7 #devine variabila locala (este prima atribuire in local)
+   y = 7 # devine variabila locala (este prima atribuire in local)
    print(y)
    print(locals())
-y=8
+y = 8
 f()
 print(y)
 
-#putem preciza spatiul(domeniul) in care se cauta o variabila la atriburie
+# putem preciza spatiul(domeniul) in care se cauta o variabila la atriburie
+
 def f():
-   global z #la atribuire - z din global
-   z=7
-   print(z)
-   print(locals())
-z=8
+   global z # la atribuire - z din global
+   z = 7
+   print(z) # 7
+   print(locals()) # {}
+z = 8
 f()
-print(z)
+print(z) # 7 # se modifica deoarece in functie am declarat z ca fiind cel global nu local, de aceea setul locals este gol
 
 #####################
 # C6 Structuri date #
 #####################
+
+import collections
+import queue
+import heapq
 
 ls_nr = [int(x) for x in input().split()]
 print("stiva")
@@ -1118,18 +1375,18 @@ stiva = []
 for x in ls_nr:
     stiva.append(x)
 for i in range(2):
-    if len(stiva)>0:
-        print(stiva.pop(),end= " ")#extrage ultimul element adaugat
+    if len(stiva) > 0:
+        print(stiva.pop(), end = " ") # extrage ultimul element adaugat
 print("\ncoada")
-import collections
+
 coada = collections.deque()
 for x in ls_nr:
     coada.append(x)
 for i in range(2):
     if len(coada) > 0:
-        print(coada.popleft(), end=" ") #extrage primul element adaugat
+        print(coada.popleft(), end = " ") # extrage primul element adaugat
 print("\ncoada 2: ")
-import queue
+
 coada = queue.Queue()
 for x in ls_nr:
     coada.put(x)
@@ -1138,30 +1395,27 @@ for i in range(2):
         print(coada.get(), end=" ")#extrage primul element adaugat
 
 print("\ncoada prioritati 1: ")
-import heapq
 
-h = [] #un heap este un vector
+h = [] # un heap este un vector
 for x in ls_nr:
-    heapq.heappush(h,x)
+    heapq.heappush(h, x)
 for i in range(2):
     if len(h) > 0:
-        print(heapq.heappop(h),end=" ") #extrage elementul minim
+        print(heapq.heappop(h), end = " ") # extrage elementul minim
 
-import queue
 print("\ncoada prioritati 2: ")
 coada = queue.PriorityQueue()
 for x in ls_nr:
     coada.put(x)
 for i in range(2):
     if coada.qsize() > 0:
-        print(coada.get(),end=" ")#extrage elementul minim
+        print(coada.get(), end = " ") # extrage elementul minim
 
 ###################
 # C10 DI_AlKMinim #
 ###################
 
 from random import randint
-
 
 def citire_vector(nume_fisier):
     f = open(nume_fisier)
