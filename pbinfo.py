@@ -1,3 +1,23 @@
+# https://www.pbinfo.ro/probleme/1286/submultimi1
+
+def submultimi1():
+    n = int(input())
+    solutie = [0] * 11
+    def valid(pozitie, i):
+        if pozitie > 1 and i - solutie[pozitie - 1] < 2:
+            return False
+        return True
+    def back(pozitie):
+        for i in range(solutie[pozitie - 1] + 1, n + 1):
+            if valid(pozitie, i):
+                solutie[pozitie] = i
+                print(" ".join(list(map(str, solutie[1:pozitie + 1]))))
+                if pozitie < n:
+                    back(pozitie + 1)
+    back(1)
+    
+submultimi1()
+
 # https://www.pbinfo.ro/probleme/198/submultimi
 
 def submultimi():
@@ -10,7 +30,8 @@ def submultimi():
             if pozitie < n:
                 back(pozitie + 1)
     back(1)
-submultimi()
+
+# submultimi()
 
 # https://www.pbinfo.ro/probleme/196/aranjamente
 
@@ -32,6 +53,7 @@ def aranjamente():
                     afisare_solutie()
                 ap[i] = 0
     back(0)
+
 # aranjamente()
 
 # https://www.pbinfo.ro/probleme/3152/combinari2
@@ -58,6 +80,7 @@ def combinari2():
                 else:
                     afisare_solutie()
     back(1)
+
 # combinari2()
 
 # https://www.pbinfo.ro/probleme/197/combinari
@@ -82,6 +105,7 @@ def combinari():
                 else:
                     afisare_combinare()
         back(1)
+
 # combinari()
 
 # https://www.pbinfo.ro/probleme/125/permutari2
@@ -108,6 +132,7 @@ def permutari2():
                         afisare_permutare()
                     ap[i] = 0
         back(0)
+
 # permutari2()
 
 # https://www.pbinfo.ro/probleme/124/permutari1
@@ -136,6 +161,7 @@ def permutari1():
                         afisare_permutare()
                     ap[i] = 0
         back(0)
+
 # permutari1()
 
 # https://www.pbinfo.ro/probleme/123/permutari
@@ -163,4 +189,5 @@ def permutari():
                         afisare_permutare()
                     ap[i] = 0
         back(1)
+
 # permutari()
