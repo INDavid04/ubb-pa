@@ -1,3 +1,28 @@
+# https://www.pbinfo.ro/probleme/124/permutari1
+with open("permutari.in", 'r') as input_file:
+    n = int(input_file.readline())
+ap = [0] * (n + 1)
+x = [0] * n
+with open("permutari1.out", 'w') as output_file:
+    def afisare_permutare():
+        permutare_str = "".join(list(map(str, x)))
+        output_file.write(permutare_str + "\n")
+    def valid(i):
+        if ap[i]:
+            return False
+        return True
+    def back(k):
+        for i in range(n, 0, -1):
+            if valid(i):
+                x[k] = i
+                ap[i] = 1
+                if k < n - 1:
+                    back(k + 1)
+                else:
+                    afisare_permutare()
+                ap[i] = 0
+    back(0)
+
 # https://www.pbinfo.ro/probleme/123/permutari
 
 with open("permutari.in", 'r') as file_input:
