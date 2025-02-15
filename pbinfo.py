@@ -1,3 +1,42 @@
+# https://www.pbinfo.ro/probleme/1281/regine1
+
+def regine1():
+    n = int(input())
+    x = [0] * n
+    ap = [0] * 11
+    found_solution = [False]
+    def afisare_solutie():
+        for i in range(n):
+            linie = ""
+            for j in range(n):
+                if j == x[i]:
+                    linie += "* "
+                else:
+                    linie += "_ "
+            print(linie)
+    def valid(pozitie):
+        for i in range(pozitie):
+            if pozitie - i == abs(x[pozitie] - x[i]):
+                return False
+        return True
+    def back(pozitie):
+        if found_solution[0]:
+            return
+        if pozitie == n:
+            afisare_solutie()
+            found_solution[0] = True
+            return
+        for i in range(n):
+            if not ap[i]:
+                x[pozitie] = i
+                ap[i] = 1
+                if valid(pozitie):
+                    back(pozitie + 1)
+                ap[i] = 0
+    back(0)
+
+regine1()
+
 # https://www.pbinfo.ro/probleme/204/siruri
 
 def siruri():
@@ -13,7 +52,7 @@ def siruri():
                 else:
                     print(" ".join(list(map(str, x[1:]))))
     back(1)
-siruri()
+# siruri()
 
 # https://www.pbinfo.ro/probleme/1286/submultimi1
 
