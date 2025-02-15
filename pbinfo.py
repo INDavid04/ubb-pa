@@ -1,3 +1,17 @@
+# https://www.pbinfo.ro/probleme/198/submultimi
+
+def submultimi():
+    n = int(input())
+    solutie = [0] * 11
+    def back(pozitie):
+        for i in range(solutie[pozitie - 1] + 1, n + 1):
+            solutie[pozitie] = i
+            print(" ".join(list(map(str, solutie[1:pozitie + 1]))))
+            if pozitie < n:
+                back(pozitie + 1)
+    back(1)
+submultimi()
+
 # https://www.pbinfo.ro/probleme/196/aranjamente
 
 def aranjamente():
@@ -18,7 +32,7 @@ def aranjamente():
                     afisare_solutie()
                 ap[i] = 0
     back(0)
-aranjamente()
+# aranjamente()
 
 # https://www.pbinfo.ro/probleme/3152/combinari2
 
