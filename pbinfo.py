@@ -1,3 +1,27 @@
+# https://www.pbinfo.ro/probleme/3152/combinari2
+
+n, m = input().split()
+n, m = int(n), int(m)
+x = [0] * (m + 1)
+def afisare_solutie():
+    solutie = str(x[1]) + " "
+    for i in range(2, m + 1):
+        solutie += str(x[i]) + " "
+    print(solutie)
+def valid(pos, i):
+    if pos > 1 and x[pos - 1] % 2 == 0 and i % 2 == 0:
+        return False
+    return True
+def back(pos):
+    for i in range(x[pos - 1] + 1, n - m + pos + 1):
+        if valid(pos, i):
+            x[pos] = i
+            if pos < m:
+                back(pos + 1)
+            else:
+                afisare_solutie()
+back(1)
+
 # https://www.pbinfo.ro/probleme/197/combinari
 
 def combinari():
@@ -20,7 +44,7 @@ def combinari():
                 else:
                     afisare_combinare()
         back(1)
-combinari()
+# combinari()
 
 # https://www.pbinfo.ro/probleme/125/permutari2
 
