@@ -1,3 +1,25 @@
+# https://www.pbinfo.ro/probleme/202/permpf
+
+def permpf():
+    n = int(input())
+    x = [0] * n
+    ap = [0] * 9
+    def afisare_solutie():
+        print(" ".join(list(map(str, x))))
+    def back(pozitie):
+        for i in range(n):
+            if not ap[i + 1] and i != pozitie:
+                x[pozitie] = i + 1
+                ap[i + 1] = 1
+                if pozitie < n - 1:
+                    back(pozitie + 1)
+                else:
+                    afisare_solutie()
+                ap[i + 1] = 0
+    back(0)
+
+permpf()
+
 # https://www.pbinfo.ro/probleme/1281/regine1
 
 def regine1():
@@ -35,7 +57,7 @@ def regine1():
                 ap[i] = 0
     back(0)
 
-regine1()
+# regine1()
 
 # https://www.pbinfo.ro/probleme/204/siruri
 
