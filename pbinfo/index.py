@@ -1,3 +1,27 @@
+# https://www.pbinfo.ro/probleme/197/combinari
+
+def combinari():
+    # {1, 2, 3, 4} luam cate doua
+    # 12 13 14 23 24 34
+    # for i in range(n - k + 1)
+    with open("combinari.in", 'r') as input_file:
+        n, k = list(map(int, input_file.readline().split()))
+    with open("combinari.out", 'w') as output_file:
+        solutie = [0] * (k + 1)
+        def afisare_combinare():
+            solutie_str = "".join(list(map(str, solutie)))
+            solutie_str = solutie_str[1:]
+            output_file.write(f"{solutie_str}\n")
+        def back(pas):
+            for i in range(solutie[pas - 1] + 1, n - k + pas + 1):
+                solutie[pas] = i
+                if pas < k:
+                    back(pas + 1)
+                else:
+                    afisare_combinare()
+        back(1)
+combinari()
+
 # https://www.pbinfo.ro/probleme/125/permutari2
 
 def permutari2():
@@ -22,7 +46,7 @@ def permutari2():
                         afisare_permutare()
                     ap[i] = 0
         back(0)
-permutari2()
+# permutari2()
 
 # https://www.pbinfo.ro/probleme/124/permutari1
 
