@@ -1,26 +1,50 @@
+# https://www.pbinfo.ro/probleme/196/aranjamente
+
+def aranjamente():
+    n, k = input().split()
+    n, k = int(n), int(k)
+    x = [0] * k
+    ap = [0] * 9
+    def afisare_solutie():
+        print(" ".join(list(map(str, x))))
+    def back(pozitie):
+        for i in range(1, n + 1):
+            if not ap[i]:
+                x[pozitie] = i
+                ap[i] = 1
+                if pozitie < k - 1:
+                    back(pozitie + 1)
+                else:
+                    afisare_solutie()
+                ap[i] = 0
+    back(0)
+aranjamente()
+
 # https://www.pbinfo.ro/probleme/3152/combinari2
 
-n, m = input().split()
-n, m = int(n), int(m)
-x = [0] * (m + 1)
-def afisare_solutie():
-    solutie = str(x[1]) + " "
-    for i in range(2, m + 1):
-        solutie += str(x[i]) + " "
-    print(solutie)
-def valid(pos, i):
-    if pos > 1 and x[pos - 1] % 2 == 0 and i % 2 == 0:
-        return False
-    return True
-def back(pos):
-    for i in range(x[pos - 1] + 1, n - m + pos + 1):
-        if valid(pos, i):
-            x[pos] = i
-            if pos < m:
-                back(pos + 1)
-            else:
-                afisare_solutie()
-back(1)
+def combinari2():
+    n, m = input().split()
+    n, m = int(n), int(m)
+    x = [0] * (m + 1)
+    def afisare_solutie():
+        solutie = str(x[1]) + " "
+        for i in range(2, m + 1):
+            solutie += str(x[i]) + " "
+        print(solutie)
+    def valid(pos, i):
+        if pos > 1 and x[pos - 1] % 2 == 0 and i % 2 == 0:
+            return False
+        return True
+    def back(pos):
+        for i in range(x[pos - 1] + 1, n - m + pos + 1):
+            if valid(pos, i):
+                x[pos] = i
+                if pos < m:
+                    back(pos + 1)
+                else:
+                    afisare_solutie()
+    back(1)
+# combinari2()
 
 # https://www.pbinfo.ro/probleme/197/combinari
 
