@@ -1,3 +1,20 @@
+# https://www.pbinfo.ro/probleme/204/siruri
+
+def siruri():
+    n, m = input().split()
+    n, m = int(n), int(m)
+    x = [0] * (m + 1)
+    def back(pozitie):
+        for i in range(x[pozitie - 1] + 1, n + 1):
+            if pozitie == 1 or i - x[pozitie - 1] <= 2:
+                x[pozitie] = i
+                if pozitie < m:
+                    back(pozitie + 1)
+                else:
+                    print(" ".join(list(map(str, x[1:]))))
+    back(1)
+siruri()
+
 # https://www.pbinfo.ro/probleme/1286/submultimi1
 
 def submultimi1():
@@ -16,7 +33,7 @@ def submultimi1():
                     back(pozitie + 1)
     back(1)
     
-submultimi1()
+# submultimi1()
 
 # https://www.pbinfo.ro/probleme/198/submultimi
 
